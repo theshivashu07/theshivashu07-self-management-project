@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
+# Create your views here.
 
 
 
@@ -10,6 +11,22 @@ from django.http import HttpResponse
 
 def index(request):
 	return render(request,"guest/index.html");
+
+def profile_metaverse(request):
+	return render(request,"guest/404.html");
+
+def study_center(request):
+	return render(request,"guest/404.html");
+
+#def code_collections(request):
+#	return render(request,"guest/404.html");
+
+def daily_routines(request):
+	return render(request,"guest/404.html");
+
+def enjoy_sections(request):
+	return render(request,"guest/404.html");
+
 
 
 

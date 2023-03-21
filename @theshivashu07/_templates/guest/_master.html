@@ -30,6 +30,7 @@
         Artcore Template
         http://www.templatemo.com/preview/templatemo_423_artcore
         -->
+        <link rel="stylesheet" href="/_static/guest/css/_target.css">
         <link rel="stylesheet" href="/_static/guest/css/bootstrap.css">
         <link rel="stylesheet" href="/_static/guest/css/font-awesome.css">
         <link rel="stylesheet" href="/_static/guest/css/animate.css">
@@ -84,8 +85,8 @@
                     <!-- <div style="width: fit-content;font-family: 'Lucida Handwriting',cursive;font-size: 16px;color: black;margin-top: 12px;">
                         <b><span id="demo" style="color:black; margin: 5px;"></span></b>                        
                     </div> -->
-                    <div style="width: fit-content;font-family: 'Lucida Handwriting',cursive;font-size: 16px;color: black;margin-top: 12px;">
-                        <b><u>Timer: </u><span id="demo" style="color: red;margin: 5px;"> </span></b>
+                    <div style="width:fit-content;font-family:'Lucida Handwriting',cursive;font-size:16px;margin-top:12px;background-color:antiquewhite;padding:2px 5px;border-radius:2px;">
+                        <b style="color:#ff9900;"><u>Timer: </u><span id="demo" style="color:#ff9900;background-color:#ffffff5f;border-radius: 2px;"> </span></b>
                     </div>
                 </div> 
                 <!-- <div class="social-top col-md-8 col-sm-8" style="background-color:#fafafa;border-radius:5px; border:groove;"> -->
@@ -143,8 +144,8 @@
                             <li {% if '/profile/' in request.path %} class="active" {% endif %}><a href="/profile/" style="border:none;display:contents;">Profile</a></li>
                             <li {% if '/studycenter/' in request.path %} class="active" {% endif %}><a href="/studycenter/" style="border:none;display:contents;">Study Center</a></li>
                             <li {% if '/codecollections/' in request.path %} class="active" {% endif %}><a href="/codecollections/" style="border:none;display:contents;">Code Collections</a></li>
-                            <li {% if '/dailyroutine/' in request.path %} class="active" {% endif %}><a href="/dailyroutine/" style="border:none;display:contents;">Daily Routines</a></li>
-                            <li {% if '/enjoy/' in request.path %} class="active" {% endif %}><a href="/enjoy/" style="border:none;display:contents;">Enjoy</a></li>
+                            <li {% if '/dailyroutines/' in request.path %} class="active" {% endif %}><a href="/dailyroutines/" style="border:none;display:contents;">Daily Routines</a></li>
+                            <li {% if '/enjoysections/' in request.path %} class="active" {% endif %}><a href="/enjoysections/" style="border:none;display:contents;">Enjoy</a></li>
                             <li {% if '/default/' in request.path %} class="active" {% endif %}><a href="/default/" style="border:none;display:contents;">DEFAULT</a></li>
                         </ul>
                     </div> 

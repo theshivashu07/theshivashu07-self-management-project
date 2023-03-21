@@ -160,7 +160,8 @@ body {
   font-size: .89em;
   line-height: 1.75;
   color: #777777;
-  background-color: #efefef;
+  background-color: #efefef; 
+/*  background-color: white; */
   text-rendering: optimizeLegibility;
 }
 
@@ -353,7 +354,8 @@ a.btn-left:hover, .top-header .social-top ul li a:hover, .main-header .menu-wrap
 .main-header {
   width: 100%;
   background-color: #fafafa;
-  padding: 10px 30px;
+/*  padding: 10px 30px;*/
+  padding: 5px 30px;
   border-bottom: groove;
 }
 @media screen and (min-width: 769px) and (max-width: 991px) {
@@ -808,7 +810,7 @@ a.btn-left:hover, .top-header .social-top ul li a:hover, .main-header .menu-wrap
 
 h3.grid-heading {
   font-size: 20px;
-  font-weight: normal;
+  font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 15px;
 }
