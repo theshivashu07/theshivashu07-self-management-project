@@ -2,9 +2,13 @@
 
 
 .paragraph{    
-	margin-bottom: 2px;
-    background-color: #fafafa;
+/*	margin-bottom: 2px;*/
+/*    background-color: #fafafa;*/
+/*    padding: 5px;*/
+	margin-bottom: 5px;
+    background-color: #f4f4f4;
     padding: 5px;
+    border-radius: 5px;
 }
 
 .tags{
@@ -19,25 +23,39 @@
 
 .codecollections{
     border-radius: 5px;
-	background-color: #003040;
+	background-color: #ffffff;
 }
 
 .codetextarea{
 	height: 250px;
-    width: 100%;
-    font-weight: bold;
-    font-size: 15px;
     border-radius: 0 0 5px 5px;
-	background-color: #004c6c;
-    padding: 20px 10px;
+    background-color: #071421;
 }
 
 .codeheading{
-	margin: 5px;
-    color: #444444;
+/*	margin: 5px;*/
+/*    color: #444444;*/
     font-size: 12px;
     padding: 5px;
-    text-transform: lowercase;
+/*    text-transform: lowercase;*/
 }
 
 
+.codeinputs{
+	width: 100%;
+    font-weight: bold;
+    font-size: 15px;
+    color: currentColor;
+    font-family: math;
+    border-radius: 4px;
+}
+
+.inputbox{
+	margin: 5px 0;
+}
+
+
+.labels{
+	padding-left: 5px;
+	font-weight: bold;
+}

@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-# Create your views here.
 
+import codecollections._importantdatasets as _importantdatasets
+# Create your views here.
 
 
 
@@ -13,5 +14,10 @@ def index(request):
 	return render(request,"otherapps/codecollections/index.html");
 
 def codesubmissions(request):
-	return render(request,"otherapps/codecollections/codesubmissions.html");
+	SenderDatasets={
+		'DataStructures':_importantdatasets.DataStructures,
+		'Plateforms':_importantdatasets.Plateforms,
+		'ProgrammingLanguages':_importantdatasets.ProgrammingLanguages,
+	}
+	return render(request,"otherapps/codecollections/codesubmissions.html", SenderDatasets);
 
