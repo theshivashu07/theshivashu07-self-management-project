@@ -1,6 +1,33 @@
 
 
 
+/*# SCROLLBAR */
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;  
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+
+
+
+
+
+
+
 .paragraph{    
 /*	margin-bottom: 2px;*/
 /*    background-color: #fafafa;*/
@@ -27,7 +54,7 @@
 }
 
 .codetextarea{
-	height: 250px;
+	height: 550px;
     border-radius: 0 0 5px 5px;
     background-color: #071421;
 }
@@ -51,7 +78,7 @@
 }
 
 .inputbox{
-	margin: 5px 0;
+	margin: 15px 0;
 }
 
 
