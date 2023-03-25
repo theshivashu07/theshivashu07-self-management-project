@@ -7,3 +7,11 @@ ProgrammingLanguages = { 'C':None, 'C++':None, 'Java':None, 'Python':None }
 
 
 
+TaggedProblemTitle = None
+TaggedPlateforms = list()
+TaggedDataStructures = list() #['Stack', 'Queue'] #list()
+TaggedDetails = list()
+TaggedTimeComplexity = None
+TaggedAuxiliarySpace = None
+
+
