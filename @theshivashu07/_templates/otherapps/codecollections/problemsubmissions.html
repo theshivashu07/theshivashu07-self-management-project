@@ -25,8 +25,8 @@
             <div class="inner-container container">
                 <div class="row">
                     <div class="section-header col-md-12">
-                        <h2>Archives</h2>
-                        <span>Subtitle Goes Here</span>
+                        <h2 class="grid-heading codeheading" style="font-weight:bold;"> Problem Submission Section</h2>
+                        <span>PATH: "{{request.path}}"</span>
                     </div> <!-- /.section-header -->
                 </div> <!-- /.row -->
                 <div class="row">
@@ -63,14 +63,14 @@
                                         <div class="col-md-12" style="padding: 20px; background-color: #303030; border-radius: 5px; margin-top: 20px;">  
                                             <div class="col-md-12 inputbox" style="padding:0; margin:0;">
                                                 <label class="labels" style=""> Enter Problem Title </label>
-                                                <input class="codeinputs" type="text" id="comingProblemTitle" name="comingProblemTitle" style="">
+                                                <input class="codeinputs" type="text" id="comingProblemTitle" name="comingProblemTitle" placeholder="{{Tagged.TaggedProblemTitle}}" style="">
                                             </div>
                                             <div class="col-md-12 inputbox" style="padding:0; margin: 0; margin-top:10px;">
                                                     <label class="labels"> Select Plateforms </label>
                                                     <div style="padding-left:5px;display:flex;overflow-x: scroll; background-color: white; border-radius: 5px; border: 1px solid #d5d5d5; padding: 2px;">
                                                         {% for name in Plateforms %}
                                                             <div style="flex: none; padding: 5px 10px;">
-                                                                <input type="checkbox" id="comingPlateforms{{loop.counter}}" name="comingPlateforms" value="{{name}}">
+                                                                <input type="checkbox" selected id="comingPlateforms{{loop.counter}}" name="comingPlateforms" value="{{name}}" {% if name in Tagged.TaggedPlateforms %} checked {% endif %}>
                                                                 <label for="comingPlateforms{{loop.counter}}"> {{name}}</label>
                                                             </div>
                                                         {% endfor %}
@@ -81,7 +81,7 @@
                                                     <div style="padding-left:5px;display:flex;overflow-x: scroll; background-color: white; border-radius: 5px; border: 1px solid #d5d5d5; padding: 2px;">
                                                         {% for name in DataStructures %}
                                                             <div style="flex: none; padding: 5px 10px;">
-                                                                <input type="checkbox" id="comingDataStructures{{loop.counter}}" name="comingDataStructures" value="{{name}}">
+                                                                <input type="checkbox" id="comingDataStructures{{loop.counter}}" name="comingDataStructures" value="{{name}}" {% if name in Tagged.TaggedDataStructures %} checked {% endif %}>
                                                                 <label for="comingDataStructures{{loop.counter}}"> {{name}}</label>
                                                             </div>
                                                         {% endfor %}
@@ -123,6 +123,7 @@
                                                 </p>
                                             </div>
                                         {% endfor %}
+
                                         <div class="paragraph">
                                             <p>
                                                 <b>Expected Time Complexity:</b> {{Tagged.TaggedTimeComplexity}}.
@@ -142,18 +143,17 @@
                                                 </div>
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-right:5px">
                                                     <label class="labels" style=""> Expected Time Complexity </label>
-                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" style="">
+                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" placeholder="{{Tagged.TaggedTimeComplexity}}" style="">
                                                 </div>
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-left:5px">
                                                     <label class="labels" style=""> Expected Auxiliary Space </label>
-                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" style="">
+                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" placeholder="{{Tagged.TaggedAuxiliarySpace}}" style="">
                                                 </div>
                                                 <div class="col-md-12 inputbox" style="padding:0; margin:0; padding:20px 0 10px 0">
                                                     <input class="codeinputs" type="submit" style="width:10%; background-color:darkred; color:white;"> 
                                                 </div>
                                             </div>
                                         </form>
-
                                     </div>
 
 
