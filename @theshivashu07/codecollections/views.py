@@ -1,8 +1,14 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 
+from BackEnd.models import *
+
 import codecollections._importantdatasets as _importantdatasets
 # Create your views here.
+
+
+problemID=Problems.objects.get(pk=1)
+
 
 
 
@@ -32,6 +38,7 @@ def index(request):
 def codesubmissions(request):
 	return render(request,"otherapps/codecollections/codesubmissions.html", SenderDatasets);
 
+
 def problemsubmissions(request):
 	if request.method=="POST":
 		comingFrom=request.POST["comingFrom"]
@@ -39,7 +46,6 @@ def problemsubmissions(request):
 			comingProblemTitle=request.POST["comingProblemTitle"]
 			comingPlateforms=request.POST.getlist("comingPlateforms")
 			comingDataStructures=request.POST.getlist("comingDataStructures")
-			# print('comingProblemTitle:',comingProblemTitle,'  |  ','comingPlateforms:',comingPlateforms,'  |  ','comingDataStructures:',comingDataStructures)
 			if(comingProblemTitle):
 				SenderDatasets['Tagged']['TaggedProblemTitle']=comingProblemTitle
 			if(comingPlateforms):
@@ -50,7 +56,6 @@ def problemsubmissions(request):
 			comingDetails=request.POST["comingDetails"]
 			comingTimeComplexity=request.POST["comingTimeComplexity"]
 			comingAuxiliarySpace=request.POST["comingAuxiliarySpace"]
-			# print('comingDetails:',comingDetails,'  |  ','comingTimeComplexity:',comingTimeComplexity,'  |  ','comingAuxiliarySpace:',comingAuxiliarySpace)
 			if(comingDetails):
 				SenderDatasets['Tagged']['TaggedDetails'].append(comingDetails)
 			if(comingTimeComplexity):
@@ -62,21 +67,130 @@ def problemsubmissions(request):
 		return redirect("/codecollections/problemsubmissions/")
 	return render(request,"otherapps/codecollections/problemsubmissions.html", SenderDatasets);
 
+
+def problemsubmissions(request):
+	if request.method=="POST":
+		comingFrom=request.POST["comingFrom"]
+		if(comingFrom=='problem_head'):
+			comingProblemTitle=request.POST["comingProblemTitle"]
+			comingPlateforms=request.POST.getlist("comingPlateforms")
+			comingDataStructures=request.POST.getlist("comingDataStructures")
+			if(comingProblemTitle or comingPlateforms or comingDataStructures):
+				locks = Problems.objects.get(pk=problemID.id)  #Problems()
+				# locks = Problems()
+				if(comingProblemTitle):
+					locks.title=comingProblemTitle
+				if(comingPlateforms):
+					locks.plateforms=len(comingPlateforms)
+					for id in comingPlateforms:
+						lock=problems_plateforms()
+						lock.problem_id=problemID
+						lock.plateform_id=id
+						lock.save()
+				if(comingDataStructures):
+					locks.datastructures=len(comingDataStructures)
+					for id in comingDataStructures:
+						lock=problems_datastructures()
+						lock.problem_id=problemID
+						lock.datastructure_id=id
+						lock.save()
+				locks.save()
+		elif(comingFrom=='problem_mid'):
+			comingDetails=request.POST["comingDetails"]
+			comingTimeComplexity=request.POST["comingTimeComplexity"]
+			comingAuxiliarySpace=request.POST["comingAuxiliarySpace"]
+			if(comingDetails or comingTimeComplexity or comingAuxiliarySpace):
+				locks = Problems.objects.get(pk=problemID)  #Problems()
+				# locks = Problems()
+				if(comingDetails):
+					locks.detailsset+=1
+					lock=problems_detailssets()
+					lock.problem_id=problemID
+					lock.detailsset=detailsset
+					lock.save()
+				if(comingTimeComplexity):
+					locks.timecomplexity=comingTimeComplexity
+				if(comingAuxiliarySpace):
+					locks.auxiliaryspace=comingAuxiliarySpace
+				locks.save()
+		else:
+			print("Choosen Else!!!")
+		return redirect("/codecollections/problemsubmissions/")
+	locks=Problems.objects.get(id=problemID.id)
+	locks.plateforms=problems_plateforms.objects.filter(problem_id=problemID.id)
+	for object in locks.plateforms:
+		object.plateform_id=Plateforms.objects.get(pk=object.plateform_id).name
+		print(object,object.plateform_id,end=' | ')
+	print()
+	locks.datastructures=problems_datastructures.objects.filter(problem_id=problemID.id)
+	for object in locks.datastructures:
+		object.datastructure_id=DataStructures.objects.get(pk=object.datastructure_id).name
+		print(object,object.datastructure_id,end=' | ')
+	print()
+	locks.detailsset=problems_detailssets.objects.filter(problem_id=problemID.id)
+	print(locks.plateforms, locks.datastructures, locks.detailsset)
+	SenderDatasets={
+		'DataSet':locks,
+		'Plateforms':Plateforms.objects.all(),
+		'DataStructures':DataStructures.objects.all(),
+		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
+	}
+	# print(SenderDatasets)
+	return render(request,"otherapps/codecollections/problemsubmissions.html", SenderDatasets);
+
+
 def edittables(request):
-	print(request)
 	if request.method=="POST":
 		comingFrom=request.POST["comingFrom"]
 		comingData=request.POST["comingData"]
-		# print("comingFrom",comingFrom,"     ","comingData",comingData)
-		hold=SenderDatasets[comingFrom+'s']
-		hold[comingData]=None
-		SenderDatasets[comingFrom+'s']=hold
-		# return redirect("/codecollections/edittables/")
+		print(comingFrom,comingData)
+		if(comingFrom=='Plateform'):
+			lock=Plateforms()
+			lock.name=comingData;
+			lock.save()
+		elif(comingFrom=='DataStructure'):
+			lock=DataStructures()
+			lock.name=comingData;
+			lock.save()
+		elif(comingFrom=='ProgrammingLanguage'):
+			lock=ProgrammingLanguages()
+			lock.name=comingData;
+			lock.save()
+		else:
+			print("Go to somewhere else.....")
+		return redirect("/codecollections/edittables/")
+	SenderDatasets={
+		'Plateforms':Plateforms.objects.all(),
+		'DataStructures':DataStructures.objects.all(),
+		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
+	}
 	return render(request,"otherapps/codecollections/edittables.html", SenderDatasets);
 
 
 '''
+
+BULK - DATA - ASSIGNMENT
+
 	if request.method=="POST":
-		values=ProjectInfo(
-						Client=request.POST["clientID"],
+		for key in _importantdatasets.Plateforms:
+			locks=Plateforms()
+			locks.name=key
+			locks.save()
+		count=0
+		for key in _importantdatasets.DataStructures:
+			count+=1
+			if(count==15):
+				break;
+			locks=DataStructures()
+			locks.name=key
+			locks.save()
+		for key in _importantdatasets.ProgrammingLanguages:
+			locks=ProgrammingLanguages()
+			locks.name=key
+			locks.save()
+		return redirect("/codecollections/edittables/")
 '''
+
+
+
+

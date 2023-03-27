@@ -23,6 +23,7 @@ urlpatterns = [
     # path('profile/',include('profile.urls')),  
     # path('studycenter/',include('studycenter.urls')),  
     path('codecollections/',include('codecollections.urls')),  
+    path('backend/',include('BackEnd.urls')),  
     # path('dailyroutines/',include('dailyroutines.urls')),  
     # path('enjoysections/',include('enjoysections.urls')),  
 ]

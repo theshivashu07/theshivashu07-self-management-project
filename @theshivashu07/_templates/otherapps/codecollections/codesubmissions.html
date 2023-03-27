@@ -99,12 +99,11 @@
                                                 <label class="labels"> Data Structure </label>
                                                 <div style="padding-left:5px;display:flex;overflow-x: scroll;">
                                                     {% for name in DataStructures %}
-                                                        {% if name in Tagged.TaggedDataStructures %}
+                                                            <!-- <div style="flex: none; padding: 5px 10px;"> -->
                                                             <div style="flex: none; padding: 5px 10px;">
                                                                 <input type="checkbox" id="programminglanguage{{loop.counter}}" name="programminglanguage" value="{{name}}">
                                                                 <label for="programminglanguage{{loop.counter}}"> {{name}} </label>
                                                             </div>
-                                                        {% endif %}
                                                     {% endfor %}
                                                 </div>
                                             <!-- </div> -->
@@ -134,27 +133,15 @@
                                                 <div class="col-md-3 inputbox">
                                                     <label class="labels"> Time Complexity </label>
                                                     <input class="codeinputs" type="text" id="timecomplexity" name="timecomplexity">
-                                                    <!-- <select name="datastructure" id="datastructure" class="codeinputs">
-                                                        {% for name in DataStructures %}
-                                                            <option value="{{name|lower}}"{% if name == 'Linked List' %} selected {% endif %}>{{name}}</option>
-                                                        {% endfor %}
-                                                        <option value="other">Other's</option>
-                                                    </select> -->
                                                 </div>
                                                 <div class="col-md-3 inputbox">
                                                     <label class="labels"> Auxiliary Complexity </label>
                                                     <input class="codeinputs" type="text" id="auxiliarycomplexity" name="auxiliarycomplexity">
-                                                    <!-- <select name="datastructure" id="datastructure" class="codeinputs">
-                                                        {% for name in DataStructures %}
-                                                            <option value="{{name|lower}}"{% if name == 'Linked List' %} selected {% endif %}>{{name}}</option>
-                                                        {% endfor %}
-                                                        <option value="other">Other's</option>
-                                                    </select> -->
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- <div class="col-md-12"> -->
-                                            <textarea name="comments" id="comments" class="codetextarea codeinputs" placeholder="typing..."></textarea>
+                                            <textarea name="comments" id="comments" class="codetextarea codeinputs" placeholder="typing..." style="margin:15px;margin-top:0;  max-width: -webkit-fill-available;"></textarea>
                                         <!-- </div> -->
                                     </div>
                                 </div>
