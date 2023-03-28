@@ -42,7 +42,7 @@
                                                     Powered by 
                                                     {% if DataSet.plateforms %}
                                                         {% for object in DataSet.plateforms %}
-                                                            <b class="tags1">{{object.plateform_id}}</b>
+                                                            <b class="tags1">{{object.name}}</b>
                                                         {% endfor %}
                                                     {% else %}
                                                         <b class="tags1">None</b>
@@ -53,7 +53,7 @@
                                                 <b style="color:black; margin-right: 10px;">Related DataSet Data Structure's : </b>
                                                 {% if DataSet.datastructures %}
                                                     {% for object in DataSet.datastructures %}
-                                                        <b class="tags2">{{object.datastructure_id}}</b>
+                                                        <b class="tags2">{{object.name}}</b>
                                                     {% endfor %}
                                                 {% else %}
                                                     <b class="tags2">None</b>
@@ -75,7 +75,7 @@
                                                     <div style="padding-left:5px;display:flex;overflow-x: scroll; background-color: white; border-radius: 5px; border: 1px solid #d5d5d5; padding: 2px;">
                                                         {% for object in Plateforms %}
                                                             <div style="flex: none; padding: 5px 10px;">
-                                                                <input type="checkbox" selected id="comingPlateforms{{loop.counter}}" name="comingPlateforms" value="{{object.id}}" {% if object.id in DataSet.plateforms %} checked {% endif %}>
+                                                                <input type="checkbox" selected id="comingPlateforms{{loop.counter}}" name="comingPlateforms" value="{{object.id}}" {% if object in DataSet.plateforms %} checked {% endif %}>
                                                                 <label for="comingPlateforms{{loop.counter}}"> {{object.name}}</label>
                                                             </div>
                                                         {% endfor %}
@@ -104,37 +104,23 @@
                                     <hr style="margin: 30px 0px;">
 
 
-                                    <div style="content-visibility: auto; background-color: white; padding: 20px; border-radius: 5px; ">                                           
-                                        <div class="paragraph">
-                                            <p>
-                                                Given a binary tree and a <b>node data</b> called <b>target</b>. Find the minimum time required to burn the complete binary tree if the target is set on fire. It is known that in 1 second all nodes connected to a given node get burned. That is its left child, right child, and parent.
-                                            </p>
-                                            <p>
-                                                <b>Note:</b> The tree contains unique values.
-                                            </p>
-                                        </div>
-                                        <div class="paragraph">
-                                            <p>
-                                                <b>Your Task:</b>  
-                                                You don't need to read input or print anything. Complete the function <b>minTime()</b> which takes the root of the tree and target as input parameters and returns the minimum time required to burn the complete binary tree if the target is set on fire at the 0th second.
-                                            </p>
-                                        </div>
-
-                                        {% for data in DataSet.TaggedDetails %}
+                                    <div style="content-visibility: auto; background-color: white; padding: 20px; border-radius: 5px; "> 
+                                        
+                                        {% for object in DataSet.detailsset %}
                                             <div class="paragraph">
                                                 <p>
                                                     <!-- <b>Your Task:</b>   -->
-                                                    {{data}}
+                                                    {{object.detailsset |safe }}
                                                 </p>
                                             </div>
                                         {% endfor %}
 
                                         <div class="paragraph">
                                             <p>
-                                                <b>Expected Time Complexity:</b> {{DataSet.TaggedTimeComplexity}}.
+                                                <b>Expected Time Complexity:</b> {{DataSet.timecomplexity}}.
                                             </p>
                                             <p>
-                                                <b>Expected Auxiliary Space:</b> {{DataSet.TaggedAuxiliarySpace}}.
+                                                <b>Expected Auxiliary Space:</b> {{DataSet.auxiliaryspace}}.
                                             </p>
                                         </div>
 
@@ -148,11 +134,11 @@
                                                 </div>
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-right:5px">
                                                     <label class="labels" style=""> Expected Time Complexity </label>
-                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" placeholder="{{DataSet.TaggedTimeComplexity}}" style="">
+                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" placeholder="{{DataSet.timecomplexity}}" style="">
                                                 </div>
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-left:5px">
                                                     <label class="labels" style=""> Expected Auxiliary Space </label>
-                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" placeholder="{{DataSet.TaggedAuxiliarySpace}}" style="">
+                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" placeholder="{{DataSet.auxiliaryspace}}" style="">
                                                 </div>
                                                 <div class="col-md-12 inputbox" style="padding:0; margin:0; padding:20px 0 10px 0">
                                                     <input class="codeinputs" type="submit" style="width:10%; background-color:darkred; color:white;"> 

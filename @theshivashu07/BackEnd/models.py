@@ -53,6 +53,24 @@ class problems_detailssets(models.Model):
 
 
 
+class Solutions(models.Model):
+	problem_id = models.ForeignKey(Problems, null=True, on_delete=models.CASCADE) 
+	plateforms = models.IntegerField(default=0, null=True); 
+	programminglanguages = models.IntegerField(default=0, null=True);	
+	datastructures = models.IntegerField(default=0, null=True); 
+	codesubmissions =models.CharField(max_length=1000, default=None, null=True); 
+	timecomplexity = models.CharField(max_length=35, default=None, null=True); 
+	auxiliaryspace = models.CharField(max_length=35, default=None, null=True); 
+	explainlevel = models.IntegerField(default=1, null=True); 
+	JoiningDate = models.DateTimeField(auto_now_add=True); 
+	UpdationDate = models.DateTimeField(auto_now=True); 
+
+class solutions_datastructures(models.Model):
+	solution_id = models.ForeignKey(Solutions, null=True, on_delete=models.CASCADE)
+	datastructure_id = models.IntegerField(default=None, null=True);
+
+
+
 
 
 
