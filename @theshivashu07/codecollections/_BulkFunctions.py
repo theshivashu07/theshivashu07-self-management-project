@@ -1,16 +1,28 @@
-from django.shortcuts import render,redirect
-from django.http import HttpResponse
+
 
 from BackEnd.models import *
 
-import codecollections._importantdatasets as _importantdatasets
-# Create your views here.
-
-from codecollections.viewsorg import *
 
 
-problemID=Problems.objects.get(pk=1)
-solutionID=Solutions.objects.get(pk=1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -18,7 +30,7 @@ solutionID=Solutions.objects.get(pk=1)
 # def index(request):
 	# return HttpResponse("Hey <b>Shivam Shukla</b>, <b style='font-size:10px'>N your url '@theshivashu07'</b> !!!");
 
-
+'''
 SenderDatasets={
 		'DataStructures':_importantdatasets.DataStructures,
 		'Plateforms':_importantdatasets.Plateforms,
@@ -202,7 +214,7 @@ def edittables(request):
 		'DataStructures':DataStructures.objects.all(),
 		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
 	}
-	return render(request,"otherapps/codecollections/edittables.html", SenderDatasets);
+	return render(request,"otherapps/codecollections/edittables.html", SenderDatasets);'''
 
 
 '''
@@ -228,6 +240,9 @@ BULK - DATA - ASSIGNMENT
 			locks.save()
 		return redirect("/codecollections/edittables/")
 '''
+
+
+
 
 
 

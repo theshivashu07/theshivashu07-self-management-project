@@ -1,0 +1,189 @@
+
+{% extends 'guest/_master.html' %}
+
+
+
+
+{% block tcontent %}
+@theshivashu07's world!!
+{% endblock %}
+
+
+
+{% block headerplusplus %}
+{% include 'otherapps/codecollections/_headerplusplus.html' %}
+{% endblock %}
+
+
+
+
+
+{% block childcontent %}
+
+
+        <div class="content-wrapper">
+            <div class="inner-container container">
+                <div class="row">
+                    <div class="section-header col-md-12">
+                        <h2 class="grid-heading codeheading" style="font-weight:bold;"> Problem Submission Section</h2>
+                        <span>PATH: "{{request.path}}"</span>
+                    </div> <!-- /.section-header -->
+                </div> <!-- /.row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box-content">
+                            <div class="row" style="background-color:#fafafa;border-radius:5px;padding:20px 5px;">
+                                <div class="col-md-12"> 
+                                    <div style="content-visibility: auto; background-color: white; padding: 20px; border-radius: 5px; ">
+                                    	<h3 class="grid-heading codeheading" style="margin-bottom:0;">
+                                            <div style="display:flex;">
+                                                101. {{DataSet.title | default:None}}
+                                                <div style="margin: 10px 10px 0 10px; text-transform: initial; background-color: #ffa500; font-size: 14px; padding: 0 5px; border-radius: 5px; height: fit-content;">
+                                                    Powered by 
+                                                    {% if DataSet.plateforms %}
+                                                        {% for object in DataSet.plateforms %}
+                                                            <b class="tags1">{{object.name}}</b>
+                                                        {% endfor %}
+                                                    {% else %}
+                                                        <b class="tags1">None</b>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+    										<div style="border-radius:2px;font-size:12px;margin-top:-5px;">
+                                                <b style="color:black; margin-right: 10px;">Related DataSet Data Structure's : </b>
+                                                {% if DataSet.datastructures %}
+                                                    {% for object in DataSet.datastructures %}
+                                                        <b class="tags2">{{object.name}}</b>
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <b class="tags2">None</b>
+                                                {% endif %}
+                                        	</div>
+    									</h3>
+
+
+
+                                        <div style="margin-top: 20px;">
+                                            {% if DataSet.detailsset %}
+                                                {% for object in DataSet.detailsset %}
+                                                    <div class="paragraph">
+                                                        <p>
+                                                            {{object.detailsset |safe }}
+                                                        </p>
+                                                    </div>
+                                                {% endfor %}
+                                            {% else %}
+                                                <div class="paragraph" style="height:140px">
+                                                    <p>
+                                                        ....................................................................
+                                                        <br>
+                                                        ....................................................................
+                                                        <br>
+                                                        ....................................................................
+                                                        <br>
+                                                        ....................................................................
+                                                        <br>
+                                                        ....................................................................
+                                                    </p>
+                                                </div>
+                                            {% endif %}
+
+                                            <div class="paragraph">
+                                                <p>
+                                                    <b>Expected Time Complexity:</b> {{DataSet.timecomplexity  | default:None}}.
+                                                </p>
+                                                <p>
+                                                   <b>Expected Auxiliary Space:</b> {{DataSet.auxiliaryspace  | default:None}}.
+                                               </p>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <hr style="margin: 15px 0px;">
+
+
+                                    <div style="content-visibility: auto; background-color: white; padding: 20px; border-radius: 5px; "> 
+
+
+
+
+                                    <form method="POST" action="/codecollections/problemsubmissions/">
+                                    {% csrf_token %}
+                                        <!-- <input  type="hidden" name="comingFrom" value="problem_head">  -->
+                                        <div class="col-md-12" style="padding: 20px; background-color: #303030; border-radius: 5px;">  
+                                            <div class="col-md-12 inputbox" style="padding:0; margin:0;">
+                                                <label class="labels" style=""> Enter Problem Title </label>
+                                                <input class="codeinputs" type="text" id="comingProblemTitle" name="comingProblemTitle" placeholder="{{DataSet.title}}" style="">
+                                            </div>
+                                            <div class="col-md-12 inputbox" style="padding:0; margin: 0; margin-top:10px;">
+                                                    <label class="labels"> Select Plateforms </label>
+                                                    <div style="padding-left:5px;display:flex;overflow-x: scroll; background-color: white; border-radius: 5px; border: 1px solid #d5d5d5; padding: 2px;">
+                                                        {% if Plateforms %}
+                                                            {% for object in Plateforms %}
+                                                                <div style="flex: none; padding: 5px 10px;">
+                                                                    <input type="checkbox" selected id="comingPlateforms{{loop.counter}}" name="comingPlateforms" value="{{object.id}}" {% if object in DataSet.plateforms %} checked {% endif %}>
+                                                                    <label for="comingPlateforms{{loop.counter}}"> {{object.name}}</label>
+                                                                </div>
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            <div style="flex: none; padding: 5px 10px;">
+                                                                <label for="None" style="font-style:italic;color: burlywood;"> <u style='margin-right:5px;font-weight:bold;'>Note:</u>   Now no data-fields are available to select here.</label>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                            </div>
+                                            <div class="col-md-12 inputbox" style="padding:0; margin: 0; margin-top:10px;">       
+                                                    <label class="labels"> Select Data Structures </label>
+                                                    <div style="padding-left:5px;display:flex;overflow-x: scroll; background-color: white; border-radius: 5px; border: 1px solid #d5d5d5; padding: 2px;">
+                                                        {% if DataStructures %}
+                                                            {% for object in DataStructures %}
+                                                                <div style="flex: none; padding: 5px 10px;">
+                                                                    <input type="checkbox" id="comingDataStructures{{loop.counter}}" name="comingDataStructures" value="{{object.id}}" {% if object in DataSet.datastructures %} checked {% endif %}>
+                                                                    <label for="comingDataStructures{{loop.counter}}"> {{object.name}}</label>
+                                                                </div>
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            <div style="flex: none; padding: 5px 10px;">
+                                                                <label for="None" style="font-style:italic;color: burlywood;"> <u style='margin-right:5px;font-weight:bold;'>Note:</u>   Now no data-fields are available to select here.</label>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                            </div>
+
+
+                                                <div class="col-md-12 inputbox" style="padding:0; margin:0; margin-top:10px;">
+                                                    <label class="labels" style=""> Enter Details </label>
+                                                    <textarea name="comingDetails" id="comingDetails" class="codetextarea codeinputs" placeholder="typing..." style="height:100px; background-color:white;"></textarea>
+                                                </div>
+                                                <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-right:5px; margin-top:10px;">
+                                                    <label class="labels" style=""> Expected Time Complexity </label>
+                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" placeholder="{{DataSet.timecomplexity}}" style="">
+                                                </div>
+                                                <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-left:5px; margin-top:10px;">
+                                                    <label class="labels" style=""> Expected Auxiliary Space </label>
+                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" placeholder="{{DataSet.auxiliaryspace}}" style="">
+                                                </div>
+                                                <div class="col-md-12 inputbox" style="padding:0; margin:0; padding:20px 0 10px 0">
+                                                    <input class="codeinputs" type="submit" style="width:10%; background-color:darkred; color:white;"> 
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div> <!-- /.row -->
+                        </div> <!-- /.box-content -->
+                    </div> <!-- /.col-md-12 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.inner-content -->
+        </div> <!-- /.content-wrapper -->
+
+
+{% endblock %}
+
+
+
