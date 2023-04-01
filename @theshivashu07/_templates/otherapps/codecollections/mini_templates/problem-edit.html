@@ -1,0 +1,84 @@
+
+
+
+
+
+                                    <div style="content-visibility: auto; background-color: white; padding: 20px; border-radius: 5px; "> 
+
+                                        <!-- <form method="POST" action="/codecollections/addproblems/"> -->
+                                        <form method="POST" action="{{ target | default:request.path}}">
+                                        {% csrf_token %}
+
+                                            <input  type="hidden" name="problemID" value="{{problemID}}"> 
+                                            <div class="col-md-12" style="padding: 20px; background-color: #303030; border-radius: 5px;">  
+                                                <div class="col-md-12 inputbox" style="padding:0; margin:0;">
+                                                    <label class="labels" style=""> Enter Problem Title </label>
+                                                    <input class="codeinputs" type="text" id="comingProblemTitle" name="comingProblemTitle" placeholder="typing..." value="{{ DataSet.title }}" style="" required>
+                                                </div>
+                                                <div class="col-md-12 inputbox" style="padding:0; margin: 0; margin-top:10px;">
+                                                    <label class="labels"> Select Plateforms </label>
+                                                    <div style="padding-left:5px;display:flex;overflow-x: scroll; background-color: white; border-radius: 5px; border: 1px solid #d5d5d5; padding: 2px;">
+                                                        {% if Plateforms %}
+                                                            {% for object in Plateforms %}
+                                                                <div style="flex: none; padding: 5px 10px;">
+                                                                    <input type="checkbox" selected id="comingPlateforms{{loop.counter}}" name="comingPlateforms" value="{{object.id}}" {% if object in DataSet.plateforms %} checked {% endif %}>
+                                                                    <label for="comingPlateforms{{loop.counter}}"> {{object.name}}</label>
+                                                                </div>
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            <div style="flex: none; padding: 5px 10px;">
+                                                                <label for="None" style="font-style:italic;color: burlywood;"> <u style='margin-right:5px;font-weight:bold;'>Note:</u>   Now no data-fields are available to select here.</label>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 inputbox" style="padding:0; margin: 0; margin-top:10px;">       
+                                                    <label class="labels"> Select Data Structures </label>
+                                                    <div style="padding-left:5px;display:flex;overflow-x: scroll; background-color: white; border-radius: 5px; border: 1px solid #d5d5d5; padding: 2px;">
+                                                        {% if DataStructures %}
+                                                            {% for object in DataStructures %}
+                                                                <div style="flex: none; padding: 5px 10px;">
+                                                                    <input type="checkbox" id="comingDataStructures{{loop.counter}}" name="comingDataStructures" value="{{object.id}}" {% if object in DataSet.datastructures %} checked {% endif %}>
+                                                                    <label for="comingDataStructures{{loop.counter}}"> {{object.name}}</label>
+                                                                </div>
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            <div style="flex: none; padding: 5px 10px;">
+                                                                <label for="None" style="font-style:italic;color: burlywood;"> <u style='margin-right:5px;font-weight:bold;'>Note:</u>   Now no data-fields are available to select here.</label>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+
+
+
+                                                {% for object in DataSet.detailsset %}
+                                                    <div class="col-md-12 inputbox" style="padding:0; margin:0; margin-top:10px;">
+                                                        <label class="labels" style=""> Enter Details </label>
+                                                        <textarea name="comingDetails" id="comingDetails" class="codetextarea codeinputs" placeholder="typing..." style="height:250px; background-color:white;" required>{{ object.detailsset |safe }}</textarea>
+                                                    </div>
+                                                {% endfor %}
+
+                                                <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-right:5px; margin-top:10px;">
+                                                    <label class="labels" style=""> Expected Time Complexity </label>
+                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" placeholder="typing..." value="{{ DataSet.timecomplexity }}" style="">
+                                                </div>
+                                                <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-left:5px; margin-top:10px;">
+                                                    <label class="labels" style=""> Expected Auxiliary Space </label>
+                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" placeholder="typing..." value="{{ DataSet.auxiliaryspace }}" style="">
+                                                </div>
+                                                <div class="col-md-12 inputbox" style="padding:0; margin:0; padding:20px 0 10px 0">
+                                                    <input class="codeinputs" type="submit" style="width:10%; background-color:darkred; color:white;"> 
+                                                </div>
+
+                                            </div>
+
+                                        </form>
+
+                                    </div>
+
+
+
+
+
+
