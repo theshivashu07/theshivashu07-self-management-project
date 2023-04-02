@@ -38,11 +38,11 @@
                                     <!-- <div style="content-visibility: auto; background-color: white; padding: 20px; border-radius: 5px; "> -->
                                         <h3 class="grid-heading codeheading" style="margin-bottom:110;">
                                             <div style="display:flex;">
-                                                101. {{DataSet.title}}
+                                                101. {{ProblemDataSet.title}}
                                                 <div style="margin: 10px 10px 0 10px; text-transform: initial; background-color: #ffa500; font-size: 14px; padding: 0 5px; border-radius: 5px; height: fit-content;">
                                                     Powered by 
-                                                    {% if DataSet.plateforms %}
-                                                        {% for object in DataSet.plateforms %}
+                                                    {% if ProblemDataSet.plateforms %}
+                                                        {% for object in ProblemDataSet.plateforms %}
                                                             <b class="tags1">{{object.name}}</b>
                                                         {% endfor %}
                                                     {% else %}
@@ -55,8 +55,8 @@
                                                     <b class="tags1">{{name}}</b>
                                                 {% endfor %} -->
                                                 <b style="color:black; margin-right: 10px;">Related Tagged Data Structure's : </b>
-                                                {% if DataSet.datastructures %}
-                                                    {% for object in DataSet.datastructures %}
+                                                {% if ProblemDataSet.datastructures %}
+                                                    {% for object in ProblemDataSet.datastructures %}
                                                         <b class="tags2">{{object.name}}</b>
                                                     {% endfor %}
                                                 {% else %}
@@ -65,7 +65,7 @@
                                             </div>
                                         </h3>
                                         
-                                        {% for object in DataSet.detailsset %}
+                                        {% for object in ProblemDataSet.detailsset %}
                                             <div class="paragraph">
                                                 <p>
                                                     <!-- <b>Your Task:</b>   -->
@@ -76,10 +76,10 @@
 
                                         <div class="paragraph">
                                             <p>
-                                                <b>Expected Time Complexity:</b> {{DataSet.timecomplexity}}.
+                                                <b>Expected Time Complexity:</b> {{ProblemDataSet.timecomplexity}}.
                                             </p>
                                             <p>
-                                                <b>Expected Auxiliary Space:</b> {{DataSet.auxiliaryspace}}.
+                                                <b>Expected Auxiliary Space:</b> {{ProblemDataSet.auxiliaryspace}}.
                                             </p>
                                         </div>
 
@@ -119,7 +119,7 @@
                                                 <div class="col-md-3 inputbox">
                                                     <label class="labels"> Plateform </label>
                                                     <select name="comingPlateforms" id="comingPlateforms" class="codeinputs">
-                                                        {% for object in DataSet.plateforms %}
+                                                        {% for object in ProblemDataSet.plateforms %}
                                                                 <option value="{{object.id}}" {% if object.name == 'GeeksForGeeks' %} selected {% endif %}>{{object.name}}</option>
                                                         {% endfor %}
                                                         <!-- <option value="other">Other's</option> -->

@@ -22,12 +22,7 @@ def index(request):
 	SenderDatasets={
 		'DataSet':None,
 	}
-	# return render(request,"otherapps/codecollections/new_404.html");
 	return render(request,"otherapps/codecollections/index.html",SenderDatasets);
-
-def justtry(request):
-	# return render(request,"otherapps/codecollections/new_404.html");
-	return render(request,"otherapps/codecollections/justtry.html");
 
 
 
@@ -40,7 +35,7 @@ def addproblems(request):
 			comingDataStructures=request.POST.getlist("comingDataStructures")
 			if(comingProblemTitle or comingPlateforms or comingDataStructures):
 				locks = Problems.objects.get(pk=problemID.id)  #Problems()
-				# locks = Problems()
+				locks = Problems()
 				if(comingProblemTitle):
 					locks.title=comingProblemTitle
 				if(comingPlateforms):
@@ -95,40 +90,19 @@ def addproblems(request):
 				locks.save()
 		else:
 			print("This is not correct Input's... Reput again!!!")
-		# return redirect("/codecollections/problemsubmissions/")
 		return redirect("/codecollections/problems/new/")
 
-	locks=Problems.objects.get(id=problemID.id)
-	holds=problems_plateforms.objects.filter(problem_id=problemID.id)
-	locks.plateforms=[ Plateforms.objects.get(pk=object.plateform_id) for object in holds ]
-	holds=problems_datastructures.objects.filter(problem_id=problemID.id)
-	locks.datastructures=[ DataStructures.objects.get(pk=object.datastructure_id) for object in holds ]
-	locks.detailsset=problems_detailssets.objects.filter(problem_id=problemID.id)
 	SenderDatasets={
-		'DataSet':locks,
+		# 'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
+		# 'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
 		'Plateforms':Plateforms.objects.all(),
 		'DataStructures':DataStructures.objects.all(),
 		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
 	}
-	# return render(request,"otherapps/codecollections/new_404.html");
 	return render(request,"otherapps/codecollections/new_addproblems.html",SenderDatasets);
-'''
-def addproblems(request):
-	if request.method=="POST":
-		pass
-	SenderDatasets={
-		'DataSet':None,
-		'Plateforms':Plateforms.objects.all(),
-		'DataStructures':DataStructures.objects.all(),
-		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
-	}
-	# return render(request,"otherapps/codecollections/new_404.html");
-	return render(request,"otherapps/codecollections/new_addproblems.html",SenderDatasets);
-'''
 
 
 
-# def addsolutions(request,problemslug):
 def addsolutions(request,problemslug='problem-number-0001'):
 	if request.method=="POST":
 		comingProblemID= problemID.id; #request.POST["comingProblemID"]
@@ -138,7 +112,6 @@ def addsolutions(request,problemslug='problem-number-0001'):
 		comingTimeComplexity=request.POST["comingTimeComplexity"]
 		comingAuxiliarySpace=request.POST["comingAuxiliarySpace"]
 		comingCodeSubmissions=request.POST["comingCodeSubmissions"]
-		# print(comingDataStructures, comingProgrammingLanguage, comingPlateforms, comingTimeComplexity, comingAuxiliarySpace, comingCodeSubmissions)
 		if(comingCodeSubmissions):
 			# locks=Solutions()
 			locks=Solutions.objects.get(pk=1) 
@@ -173,71 +146,63 @@ def addsolutions(request,problemslug='problem-number-0001'):
 				locks.save()
 		return redirect("/codecollections/problemsandsolutions/problem-number-001/new/")
 
-	locks=Problems.objects.get(id=problemID.id)
-	holds=problems_plateforms.objects.filter(problem_id=problemID.id)
-	locks.plateforms=[ Plateforms.objects.get(pk=object.plateform_id) for object in holds ]
-	holds=problems_datastructures.objects.filter(problem_id=problemID.id)
-	locks.datastructures=[ DataStructures.objects.get(pk=object.datastructure_id) for object in holds ]
-	locks.detailsset=problems_detailssets.objects.filter(problem_id=problemID.id)
 	SenderDatasets={
-		'DataSet':locks,
+		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
+		'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
 		'Plateforms':Plateforms.objects.all(),
 		'DataStructures':DataStructures.objects.all(),
 		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
 	}
-	# return render(request,"otherapps/codecollections/new_404.html");
 	return render(request,"otherapps/codecollections/new_addsolutions.html",SenderDatasets);
-'''
-# def addsolutions(request,problemslug):
-def addsolutions(request,problemslug='problem-number-0001'):
-	if request.method=="POST":
-		pass
-	SenderDatasets={
-		'DataSet':None,
-	}
-	# return render(request,"otherapps/codecollections/new_404.html");
-	return render(request,"otherapps/codecollections/new_addsolutions.html",SenderDatasets);
-'''
 
 
 
 
-# def addproblemsandsolutions(request,problemslug):
 def addproblemsandsolutions(request,problemslug='problem-number-0001'):
 	if request.method=="POST":
 		pass
+
 	SenderDatasets={
-		'DataSet':None,
+		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
+		'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
+		'Plateforms':Plateforms.objects.all(),
+		'DataStructures':DataStructures.objects.all(),
+		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
 	}
-	return render(request,"otherapps/codecollections/new_404.html");
 	return render(request,"otherapps/codecollections/new_addproblemsandsolutions.html",SenderDatasets);
 
 
 
 
 
-# def editproblems(request,problemslug):
 def editproblems(request,problemslug='problem-number-0001'):
 	if request.method=="POST":
 		pass
+
 	SenderDatasets={
-		'DataSet':None,
+		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
+		'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
+		'Plateforms':Plateforms.objects.all(),
+		'DataStructures':DataStructures.objects.all(),
+		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
 	}
-	return render(request,"otherapps/codecollections/new_404.html");
 	return render(request,"otherapps/codecollections/new_editproblems.html",SenderDatasets);
 
 
 
 
 
-# def editsolutions(request,problemslug,solutionid):
 def editsolutions(request,problemslug='problem-number-0001',solutionid='1'):
 	if request.method=="POST":
 		pass
+
 	SenderDatasets={
-		'DataSet':None,
+		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
+		'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
+		'Plateforms':Plateforms.objects.all(),
+		'DataStructures':DataStructures.objects.all(),
+		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
 	}
-	return render(request,"otherapps/codecollections/new_404.html");
 	return render(request,"otherapps/codecollections/new_editsolutions.html",SenderDatasets);
 
 
@@ -247,39 +212,50 @@ def editsolutions(request,problemslug='problem-number-0001',solutionid='1'):
 def problemswholelist(request):
 	if request.method=="POST":
 		pass
+
 	SenderDatasets={
-		'DataSet':None,
+		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
+		'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
+		'Plateforms':Plateforms.objects.all(),
+		'DataStructures':DataStructures.objects.all(),
+		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
 	}
-	return render(request,"otherapps/codecollections/new_404.html");
-	return render(request,"otherapps/codecollections/new_problemswholelist.html",SenderDatasets);
+	return render(request,"otherapps/codecollections/new_404.html",SenderDatasets);
+	# return render(request,"otherapps/codecollections/new_problemswholelist.html",SenderDatasets);
 
 
 
 
 
-# def openproblems(request,problemslug):
-def openproblems(request,problemslug='problem-number-0001'):
+# def openproblems(request,problemslug='problem-number-0001'):
+# 	if request.method=="POST":
+# 		pass
+
+# 	SenderDatasets={
+# 		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
+# 		'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
+# 		'Plateforms':Plateforms.objects.all(),
+# 		'DataStructures':DataStructures.objects.all(),
+# 		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
+# 	}
+# 	return render(request,"otherapps/codecollections/new_openproblems.html",SenderDatasets);
+
+
+
+
+
+def openproblemsandsolutions(request,problemslug='problem-number-0001',solutionid='1'):
 	if request.method=="POST":
 		pass
+
 	SenderDatasets={
-		'DataSet':None,
+		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
+		'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
+		'Plateforms':Plateforms.objects.all(),
+		'DataStructures':DataStructures.objects.all(),
+		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
 	}
-	return render(request,"otherapps/codecollections/new_404.html");
-	return render(request,"otherapps/codecollections/new_openproblems.html",SenderDatasets);
-
-
-
-
-
-# def opensolutions(request,problemslug,solutionid):
-def opensolutions(request,problemslug='problem-number-0001',solutionid='1'):
-	if request.method=="POST":
-		pass
-	SenderDatasets={
-		'DataSet':None,
-	}
-	return render(request,"otherapps/codecollections/new_404.html");
-	return render(request,"otherapps/codecollections/new_opensolutions.html",SenderDatasets);
+	return render(request,"otherapps/codecollections/new_openproblemsandsolutions.html",SenderDatasets);
 
 
 

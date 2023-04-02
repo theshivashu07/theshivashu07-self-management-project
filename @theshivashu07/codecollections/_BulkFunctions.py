@@ -7,12 +7,39 @@ from BackEnd.models import *
 
 
 
+def ProblemDataSet(problemID):
+	object=Problems.objects.get(id=problemID.id)
+	holds=problems_plateforms.objects.filter(problem_id=problemID.id)
+	object.plateforms=[ Plateforms.objects.get(pk=object.plateform_id) for object in holds ]
+	holds=problems_datastructures.objects.filter(problem_id=problemID.id)
+	object.datastructures=[ DataStructures.objects.get(pk=object.datastructure_id) for object in holds ]
+	object.detailsset=problems_detailssets.objects.filter(problem_id=problemID.id)
+	return object
 
 
+def SolutionDataSet(problemID,solutionID):
+	object=Solutions.objects.filter(problem_id=problemID.id)[0]
+	object.programminglanguages=ProgrammingLanguages.objects.get(pk=object.programminglanguages)
+	object.plateforms=Plateforms.objects.get(pk=object.plateforms)
+	holds=solutions_datastructures.objects.filter(solution_id=solutionID.id)
+	object.datastructures=[ DataStructures.objects.get(pk=object.datastructure_id) for object in holds ]     
+	return object
 
 
+def AddProblems(request):
+	return object
 
 
+def EditProblems(request):
+	return object
+
+
+def AddSolutions(request):
+	return object
+
+
+def EditSolutions(request):
+	return object
 
 
 
@@ -61,47 +88,47 @@ def codesubmissions(request):
 		comingCodeSubmissions=request.POST["comingCodeSubmissions"]
 		# print(comingDataStructures, comingProgrammingLanguage, comingPlateforms, comingTimeComplexity, comingAuxiliarySpace, comingCodeSubmissions)
 		if(comingCodeSubmissions):
-			# locks=Solutions()
-			locks=Solutions.objects.get(pk=1) 
-			locks.problem_id=problemID
-			locks.codesubmissions=comingCodeSubmissions
-			locks.save()
+			# object=Solutions()
+			object=Solutions.objects.get(pk=1) 
+			object.problem_id=problemID
+			object.codesubmissions=comingCodeSubmissions
+			object.save()
 			if(comingProgrammingLanguage):
-				locks.programminglanguages=comingProgrammingLanguage
+				object.programminglanguages=comingProgrammingLanguage
 			if(comingPlateforms):
-				locks.plateforms=comingPlateforms
+				object.plateforms=comingPlateforms
 			if(comingTimeComplexity):
-				locks.timecomplexity=comingTimeComplexity
+				object.timecomplexity=comingTimeComplexity
 			if(comingAuxiliarySpace):
-				locks.auxiliaryspace=comingAuxiliarySpace
-			locks.save()
+				object.auxiliaryspace=comingAuxiliarySpace
+			object.save()
 			# must that you putted any one data-structure...
 			if(comingDataStructures):
-				locks.datastructures=len(comingDataStructures)
-				holds = [ str(object.datastructure_id) for object in solutions_datastructures.objects.filter(solution_id=locks.id) ]
+				object.datastructures=len(comingDataStructures)
+				holds = [ str(object.datastructure_id) for object in solutions_datastructures.objects.filter(solution_id=object.id) ]
 				for id in comingDataStructures:
 					if(id in holds):
 						holds.remove(id)
 					else:
 						lock=solutions_datastructures()
-						lock.solution_id=locks
+						lock.solution_id=object
 						lock.datastructure_id=id
 						lock.save()
 				else:
 					for id in holds:
-						object = solutions_datastructures.objects.get(datastructure_id=id, solution_id=locks.id)
+						object = solutions_datastructures.objects.get(datastructure_id=id, solution_id=object.id)
 						object.delete()
-				locks.save()
+				object.save()
 		return redirect("/codecollections/codesubmissions/")
 
-	locks=Problems.objects.get(id=problemID.id)
+	object=Problems.objects.get(id=problemID.id)
 	holds=problems_plateforms.objects.filter(problem_id=problemID.id)
-	locks.plateforms=[ Plateforms.objects.get(pk=object.plateform_id) for object in holds ]
+	object.plateforms=[ Plateforms.objects.get(pk=object.plateform_id) for object in holds ]
 	holds=problems_datastructures.objects.filter(problem_id=problemID.id)
-	locks.datastructures=[ DataStructures.objects.get(pk=object.datastructure_id) for object in holds ]
-	locks.detailsset=problems_detailssets.objects.filter(problem_id=problemID.id)
+	object.datastructures=[ DataStructures.objects.get(pk=object.datastructure_id) for object in holds ]
+	object.detailsset=problems_detailssets.objects.filter(problem_id=problemID.id)
 	SenderDatasets={
-		'DataSet':locks,
+		'DataSet':object,
 		'Plateforms':Plateforms.objects.all(),
 		'DataStructures':DataStructures.objects.all(),
 		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
@@ -117,12 +144,12 @@ def problemsubmissions(request):
 			comingPlateforms=request.POST.getlist("comingPlateforms")
 			comingDataStructures=request.POST.getlist("comingDataStructures")
 			if(comingProblemTitle or comingPlateforms or comingDataStructures):
-				locks = Problems.objects.get(pk=problemID.id)  #Problems()
-				# locks = Problems()
+				object = Problems.objects.get(pk=problemID.id)  #Problems()
+				# object = Problems()
 				if(comingProblemTitle):
-					locks.title=comingProblemTitle
+					object.title=comingProblemTitle
 				if(comingPlateforms):
-					locks.plateforms=len(comingPlateforms)
+					object.plateforms=len(comingPlateforms)
 					holds = [  str(object.plateform_id) for object in problems_plateforms.objects.filter(problem_id=problemID.id) ]
 					for id in comingPlateforms:
 						if(id in holds):
@@ -137,7 +164,7 @@ def problemsubmissions(request):
 							object = problems_plateforms.objects.get(plateform_id=id, problem_id=problemID.id)
 							object.delete()
 				if(comingDataStructures):
-					locks.datastructures=len(comingDataStructures)
+					object.datastructures=len(comingDataStructures)
 					holds = [ str(object.datastructure_id) for object in problems_datastructures.objects.filter(problem_id=problemID.id) ]
 					for id in comingDataStructures:
 						if(id in holds):
@@ -152,37 +179,37 @@ def problemsubmissions(request):
 							object = problems_datastructures.objects.get(datastructure_id=id, problem_id=problemID.id)
 							object.delete()
 
-				locks.save()
+				object.save()
 
 		elif(comingFrom=='problem_mid'):
 			comingDetails=request.POST["comingDetails"]
 			comingTimeComplexity=request.POST["comingTimeComplexity"]
 			comingAuxiliarySpace=request.POST["comingAuxiliarySpace"]
 			if(comingDetails or comingTimeComplexity or comingAuxiliarySpace):
-				locks = Problems.objects.get(pk=problemID.id)  #Problems()
-				# locks = Problems()
+				object = Problems.objects.get(pk=problemID.id)  #Problems()
+				# object = Problems()
 				if(comingDetails):
-					locks.detailsset+=1
+					object.detailsset+=1
 					lock=problems_detailssets()
 					lock.problem_id=problemID
 					lock.detailsset=comingDetails
 					lock.save()
 				if(comingTimeComplexity):
-					locks.timecomplexity=comingTimeComplexity
+					object.timecomplexity=comingTimeComplexity
 				if(comingAuxiliarySpace):
-					locks.auxiliaryspace=comingAuxiliarySpace
-				locks.save()
+					object.auxiliaryspace=comingAuxiliarySpace
+				object.save()
 		else:
 			print("Choosen Else!!!")
 		return redirect("/codecollections/problemsubmissions/")
-	locks=Problems.objects.get(id=problemID.id)
+	object=Problems.objects.get(id=problemID.id)
 	holds=problems_plateforms.objects.filter(problem_id=problemID.id)
-	locks.plateforms=[ Plateforms.objects.get(pk=object.plateform_id) for object in holds ]
+	object.plateforms=[ Plateforms.objects.get(pk=object.plateform_id) for object in holds ]
 	holds=problems_datastructures.objects.filter(problem_id=problemID.id)
-	locks.datastructures=[ DataStructures.objects.get(pk=object.datastructure_id) for object in holds ]
-	locks.detailsset=problems_detailssets.objects.filter(problem_id=problemID.id)
+	object.datastructures=[ DataStructures.objects.get(pk=object.datastructure_id) for object in holds ]
+	object.detailsset=problems_detailssets.objects.filter(problem_id=problemID.id)
 	SenderDatasets={
-		'DataSet':locks,
+		'DataSet':object,
 		'Plateforms':Plateforms.objects.all(),
 		'DataStructures':DataStructures.objects.all(),
 		'ProgrammingLanguages':ProgrammingLanguages.objects.all(),
@@ -223,21 +250,21 @@ BULK - DATA - ASSIGNMENT
 
 	if request.method=="POST":
 		for key in _importantdatasets.Plateforms:
-			locks=Plateforms()
-			locks.name=key
-			locks.save()
+			object=Plateforms()
+			object.name=key
+			object.save()
 		count=0
 		for key in _importantdatasets.DataStructures:
 			count+=1
 			if(count==15):
 				break;
-			locks=DataStructures()
-			locks.name=key
-			locks.save()
+			object=DataStructures()
+			object.name=key
+			object.save()
 		for key in _importantdatasets.ProgrammingLanguages:
-			locks=ProgrammingLanguages()
-			locks.name=key
-			locks.save()
+			object=ProgrammingLanguages()
+			object.name=key
+			object.save()
 		return redirect("/codecollections/edittables/")
 '''
 

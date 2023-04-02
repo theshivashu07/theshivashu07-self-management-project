@@ -37,11 +37,11 @@
                                     <div style="content-visibility: auto; background-color: white; padding: 20px; border-radius: 5px; ">
                                     	<h3 class="grid-heading codeheading" style="margin-bottom:0;">
                                             <div style="display:flex;">
-                                                101. {{DataSet.title}}
+                                                101. {{ProblemDataSet.title}}
                                                 <div style="margin: 10px 10px 0 10px; text-transform: initial; background-color: #ffa500; font-size: 14px; padding: 0 5px; border-radius: 5px; height: fit-content;">
                                                     Powered by 
-                                                    {% if DataSet.plateforms %}
-                                                        {% for object in DataSet.plateforms %}
+                                                    {% if ProblemDataSet.plateforms %}
+                                                        {% for object in ProblemDataSet.plateforms %}
                                                             <b class="tags1">{{object.name}}</b>
                                                         {% endfor %}
                                                     {% else %}
@@ -50,9 +50,9 @@
                                                 </div>
                                             </div>
     										<div style="border-radius:2px;font-size:12px;margin-top:-5px;">
-                                                <b style="color:black; margin-right: 10px;">Related DataSet Data Structure's : </b>
-                                                {% if DataSet.datastructures %}
-                                                    {% for object in DataSet.datastructures %}
+                                                <b style="color:black; margin-right: 10px;">Related ProblemDataSet Data Structure's : </b>
+                                                {% if ProblemDataSet.datastructures %}
+                                                    {% for object in ProblemDataSet.datastructures %}
                                                         <b class="tags2">{{object.name}}</b>
                                                     {% endfor %}
                                                 {% else %}
@@ -68,14 +68,14 @@
                                         <div class="col-md-12" style="padding: 20px; background-color: #303030; border-radius: 5px; margin-top: 20px;">  
                                             <div class="col-md-12 inputbox" style="padding:0; margin:0;">
                                                 <label class="labels" style=""> Enter Problem Title </label>
-                                                <input class="codeinputs" type="text" id="comingProblemTitle" name="comingProblemTitle" placeholder="{{DataSet.title}}" style="">
+                                                <input class="codeinputs" type="text" id="comingProblemTitle" name="comingProblemTitle" placeholder="{{ProblemDataSet.title}}" style="">
                                             </div>
                                             <div class="col-md-12 inputbox" style="padding:0; margin: 0; margin-top:10px;">
                                                     <label class="labels"> Select Plateforms </label>
                                                     <div style="padding-left:5px;display:flex;overflow-x: scroll; background-color: white; border-radius: 5px; border: 1px solid #d5d5d5; padding: 2px;">
                                                         {% for object in Plateforms %}
                                                             <div style="flex: none; padding: 5px 10px;">
-                                                                <input type="checkbox" selected id="comingPlateforms{{loop.counter}}" name="comingPlateforms" value="{{object.id}}" {% if object in DataSet.plateforms %} checked {% endif %}>
+                                                                <input type="checkbox" selected id="comingPlateforms{{loop.counter}}" name="comingPlateforms" value="{{object.id}}" {% if object in ProblemDataSet.plateforms %} checked {% endif %}>
                                                                 <label for="comingPlateforms{{loop.counter}}"> {{object.name}}</label>
                                                             </div>
                                                         {% endfor %}
@@ -86,7 +86,7 @@
                                                     <div style="padding-left:5px;display:flex;overflow-x: scroll; background-color: white; border-radius: 5px; border: 1px solid #d5d5d5; padding: 2px;">
                                                         {% for object in DataStructures %}
                                                             <div style="flex: none; padding: 5px 10px;">
-                                                                <input type="checkbox" id="comingDataStructures{{loop.counter}}" name="comingDataStructures" value="{{object.id}}" {% if object in DataSet.datastructures %} checked {% endif %}>
+                                                                <input type="checkbox" id="comingDataStructures{{loop.counter}}" name="comingDataStructures" value="{{object.id}}" {% if object in ProblemDataSet.datastructures %} checked {% endif %}>
                                                                 <label for="comingDataStructures{{loop.counter}}"> {{object.name}}</label>
                                                             </div>
                                                         {% endfor %}
@@ -106,7 +106,7 @@
 
                                     <div style="content-visibility: auto; background-color: white; padding: 20px; border-radius: 5px; "> 
                                         
-                                        {% for object in DataSet.detailsset %}
+                                        {% for object in ProblemDataSet.detailsset %}
                                             <div class="paragraph">
                                                 <p>
                                                     <!-- <b>Your Task:</b>   -->
@@ -117,10 +117,10 @@
 
                                         <div class="paragraph">
                                             <p>
-                                                <b>Expected Time Complexity:</b> {{DataSet.timecomplexity}}.
+                                                <b>Expected Time Complexity:</b> {{ProblemDataSet.timecomplexity}}.
                                             </p>
                                             <p>
-                                                <b>Expected Auxiliary Space:</b> {{DataSet.auxiliaryspace}}.
+                                                <b>Expected Auxiliary Space:</b> {{ProblemDataSet.auxiliaryspace}}.
                                             </p>
                                         </div>
 
@@ -134,11 +134,11 @@
                                                 </div>
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-right:5px">
                                                     <label class="labels" style=""> Expected Time Complexity </label>
-                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" placeholder="{{DataSet.timecomplexity}}" style="">
+                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" placeholder="{{ProblemDataSet.timecomplexity}}" style="">
                                                 </div>
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-left:5px">
                                                     <label class="labels" style=""> Expected Auxiliary Space </label>
-                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" placeholder="{{DataSet.auxiliaryspace}}" style="">
+                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" placeholder="{{ProblemDataSet.auxiliaryspace}}" style="">
                                                 </div>
                                                 <div class="col-md-12 inputbox" style="padding:0; margin:0; padding:20px 0 10px 0">
                                                     <input class="codeinputs" type="submit" style="width:10%; background-color:darkred; color:white;"> 

@@ -66,7 +66,7 @@
                                         <div class="col-md-12" style="padding: 20px; background-color: #303030; border-radius: 5px;">  
                                             <div class="col-md-12 inputbox" style="padding:0; margin:0;">
                                                 <label class="labels" style=""> Enter Problem Title </label>
-                                                <input class="codeinputs" type="text" id="comingProblemTitle" name="comingProblemTitle" placeholder="{{DataSet.title}}" style="">
+                                                <input class="codeinputs" type="text" id="comingProblemTitle" name="comingProblemTitle" placeholder="{{ProblemDataSet.title}}" style="">
                                             </div>
                                             <div class="col-md-12 inputbox" style="padding:0; margin: 0; margin-top:10px;">
                                                     <label class="labels"> Select Plateforms </label>
@@ -74,7 +74,7 @@
                                                         {% if Plateforms %}
                                                             {% for object in Plateforms %}
                                                                 <div style="flex: none; padding: 5px 10px;">
-                                                                    <input type="checkbox" selected id="comingPlateforms{{loop.counter}}" name="comingPlateforms" value="{{object.id}}" {% if object in DataSet.plateforms %} checked {% endif %}>
+                                                                    <input type="checkbox" selected id="comingPlateforms{{loop.counter}}" name="comingPlateforms" value="{{object.id}}" {% if object in ProblemDataSet.plateforms %} checked {% endif %}>
                                                                     <label for="comingPlateforms{{loop.counter}}"> {{object.name}}</label>
                                                                 </div>
                                                             {% endfor %}
@@ -91,7 +91,7 @@
                                                         {% if DataStructures %}
                                                             {% for object in DataStructures %}
                                                                 <div style="flex: none; padding: 5px 10px;">
-                                                                    <input type="checkbox" id="comingDataStructures{{loop.counter}}" name="comingDataStructures" value="{{object.id}}" {% if object in DataSet.datastructures %} checked {% endif %}>
+                                                                    <input type="checkbox" id="comingDataStructures{{loop.counter}}" name="comingDataStructures" value="{{object.id}}" {% if object in ProblemDataSet.datastructures %} checked {% endif %}>
                                                                     <label for="comingDataStructures{{loop.counter}}"> {{object.name}}</label>
                                                                 </div>
                                                             {% endfor %}
@@ -110,11 +110,11 @@
                                                 </div>
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-right:5px; margin-top:10px;">
                                                     <label class="labels" style=""> Expected Time Complexity </label>
-                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" placeholder="{{DataSet.timecomplexity}}" style="">
+                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" placeholder="{{ProblemDataSet.timecomplexity}}" style="">
                                                 </div>
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-left:5px; margin-top:10px;">
                                                     <label class="labels" style=""> Expected Auxiliary Space </label>
-                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" placeholder="{{DataSet.auxiliaryspace}}" style="">
+                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" placeholder="{{ProblemDataSet.auxiliaryspace}}" style="">
                                                 </div>
                                                 <div class="col-md-12 inputbox" style="padding:0; margin:0; padding:20px 0 10px 0">
                                                     <input class="codeinputs" type="submit" style="width:10%; background-color:darkred; color:white;"> 
