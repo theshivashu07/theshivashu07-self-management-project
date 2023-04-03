@@ -35,13 +35,11 @@
 
                                         <div style="margin-top: 30px;">
                                             {% if ProblemDataSet.detailsset %}
-                                                {% for object in ProblemDataSet.detailsset %}
                                                     <div class="paragraph" style="padding: 20px 5px;">
                                                         <p>
-                                                            {{object.detailsset |safe }}
+                                                            {{ProblemDataSet.detailsset |safe }}
                                                         </p>
                                                     </div>
-                                                {% endfor %}
                                             {% else %}
                                                 <div class="paragraph">
                                                     <p>

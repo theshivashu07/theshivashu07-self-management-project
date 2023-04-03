@@ -13,7 +13,7 @@ def ProblemDataSet(problemID):
 	object.plateforms=[ Plateforms.objects.get(pk=object.plateform_id) for object in holds ]
 	holds=problems_datastructures.objects.filter(problem_id=problemID.id)
 	object.datastructures=[ DataStructures.objects.get(pk=object.datastructure_id) for object in holds ]
-	object.detailsset=problems_detailssets.objects.filter(problem_id=problemID.id)
+	# object.detailsset=problems_detailssets.objects.filter(problem_id=problemID.id) 		#current_hidden_data 
 	return object
 
 
@@ -26,20 +26,258 @@ def SolutionDataSet(problemID,solutionID):
 	return object
 
 
+
+
+
 def AddProblems(request):
-	return object
+	comingProblemTitle=request.POST["comingProblemTitle"]
+	comingPlateforms=request.POST.getlist("comingPlateforms")
+	comingDataStructures=request.POST.getlist("comingDataStructures")
+	comingDetails=request.POST["comingDetails"]
+	comingTimeComplexity=request.POST["comingTimeComplexity"]
+	comingAuxiliarySpace=request.POST["comingAuxiliarySpace"]
+
+	# object = Problems.objects.get(pk=problemID.id)  
+	object = Problems()
+
+	if(comingProblemTitle):
+		object.title=comingProblemTitle
+		object.save()
+
+	if(comingPlateforms):
+		object.plateforms=len(comingPlateforms)
+		holds = [  str(object.plateform_id) for object in problems_plateforms.objects.filter(problem_id=object.id) ]
+		for id in comingPlateforms:
+			if(id in holds):
+				holds.remove(id)
+			else:
+				miniobject=problems_plateforms()
+				miniobject.problem_id=object
+				miniobject.plateform_id=id
+				miniobject.save()
+		else:
+			for id in holds:
+				miniobject = problems_plateforms.objects.get(plateform_id=id, problem_id=object.id)
+				miniobject.delete()
+		object.save()
+
+	if(comingDataStructures):
+		object.datastructures=len(comingDataStructures)
+		holds = [ str(object.datastructure_id) for object in problems_datastructures.objects.filter(problem_id=object.id) ]
+		for id in comingDataStructures:
+			if(id in holds):
+				holds.remove(id)
+			else:
+				miniobject=problems_datastructures()
+				miniobject.problem_id=object
+				miniobject.datastructure_id=id
+				miniobject.save()
+		else:
+			for id in holds:
+				miniobject = problems_datastructures.objects.get(datastructure_id=id, problem_id=object.id)
+				miniobject.delete()
+		object.save()
+
+	if(comingDetails):
+		object.detailsset=comingDetails		 		#current_show_data 
+		# object.detailsset+=1 								#current_hidden_data 
+		# miniobject=problems_detailssets() 		#current_hidden_data 
+		# miniobject.problem_id=problemID 		#current_hidden_data 
+		# miniobject.detailsset=comingDetails 	#current_hidden_data 
+		# miniobject.save() 									#current_hidden_data 
+		object.save()
+
+	if(comingTimeComplexity):
+		object.timecomplexity=comingTimeComplexity
+		object.save()
+
+	if(comingAuxiliarySpace):
+		object.auxiliaryspace=comingAuxiliarySpace
+		object.save()
+
+	return None
+	# return object
 
 
-def EditProblems(request):
-	return object
+
+def EditProblems(request,problemID):
+	comingProblemTitle=request.POST["comingProblemTitle"]
+	comingPlateforms=request.POST.getlist("comingPlateforms")
+	comingDataStructures=request.POST.getlist("comingDataStructures")
+	comingDetails=request.POST["comingDetails"]
+	comingTimeComplexity=request.POST["comingTimeComplexity"]
+	comingAuxiliarySpace=request.POST["comingAuxiliarySpace"]
+
+	object = Problems.objects.get(pk=problemID.id)  
+	# object = Problems()
+
+	if(comingProblemTitle):
+		object.title=comingProblemTitle
+		object.save()
+
+	if(comingPlateforms):
+		object.plateforms=len(comingPlateforms)
+		holds = [  str(object.plateform_id) for object in problems_plateforms.objects.filter(problem_id=object.id) ]
+		for id in comingPlateforms:
+			if(id in holds):
+				holds.remove(id)
+			else:
+				miniobject=problems_plateforms()
+				print(object)
+				miniobject.problem_id=object
+				miniobject.plateform_id=id
+				miniobject.save()
+		else:
+			for id in holds:
+				miniobject = problems_plateforms.objects.get(plateform_id=id, problem_id=object.id)
+				miniobject.delete()
+		object.save()
+				
+	if(comingDataStructures):
+		object.datastructures=len(comingDataStructures)
+		holds = [ str(object.datastructure_id) for object in problems_datastructures.objects.filter(problem_id=object.id) ]
+		for id in comingDataStructures:
+			if(id in holds):
+				holds.remove(id)
+			else:
+				miniobject=problems_datastructures()
+				print(object)
+				miniobject.problem_id=object
+				miniobject.datastructure_id=id
+				miniobject.save()
+		else:
+			for id in holds:
+				miniobject = problems_datastructures.objects.get(datastructure_id=id, problem_id=object.id)
+				miniobject.delete()
+		object.save()
+
+	if(comingDetails):
+		object.detailsset=comingDetails		 		#current_show_data 
+		# object.detailsset+=1 								#current_hidden_data 
+		# miniobject=problems_detailssets() 		#current_hidden_data 
+		# miniobject.problem_id=problemID 		#current_hidden_data 
+		# miniobject.detailsset=comingDetails 	#current_hidden_data 
+		# miniobject.save() 									#current_hidden_data 
+		object.save()
+
+	if(comingTimeComplexity):
+		object.timecomplexity=comingTimeComplexity
+		object.save()
+
+	if(comingAuxiliarySpace):
+		object.auxiliaryspace=comingAuxiliarySpace
+		object.save()
+
+	return None
+	# return object
 
 
 def AddSolutions(request):
-	return object
+	comingProblemID= problemID.id; #request.POST["comingProblemID"]
+	comingDataStructures=request.POST.getlist("comingDataStructures")
+	comingProgrammingLanguage=request.POST["comingProgrammingLanguage"]
+	comingPlateforms=request.POST["comingPlateforms"]
+	comingTimeComplexity=request.POST["comingTimeComplexity"]
+	comingAuxiliarySpace=request.POST["comingAuxiliarySpace"]
+	comingCodeSubmissions=request.POST["comingCodeSubmissions"]
+
+	object=Solutions()
+	# object=Solutions.objects.get(pk=1) 
+
+	object.problem_id=problemID
+	object.codesubmissions=comingCodeSubmissions
+	object.save()
+
+	if(comingProgrammingLanguage):
+		object.programminglanguages=comingProgrammingLanguage
+		object.save()
+
+	if(comingPlateforms):
+		object.plateforms=comingPlateforms
+		object.save()
+
+	if(comingTimeComplexity):
+		object.timecomplexity=comingTimeComplexity
+		object.save()
+
+	if(comingAuxiliarySpace):
+		object.auxiliaryspace=comingAuxiliarySpace
+		object.save()
+
+	# must that you putted any one data-structure...
+	if(comingDataStructures):
+		object.datastructures=len(comingDataStructures)
+		holds = [ str(object.datastructure_id) for object in solutions_datastructures.objects.filter(solution_id=object.id) ]
+		for id in comingDataStructures:
+			if(id in holds):
+				holds.remove(id)
+			else:
+				miniobject=solutions_datastructures()
+				miniobject.solution_id=object
+				miniobject.datastructure_id=id
+				miniobject.save()
+		else:
+			for id in holds:
+				miniobject = solutions_datastructures.objects.get(datastructure_id=id, solution_id=object.id)
+				miniobject.delete()
+		object.save()
+
+	return None
+	# return object
 
 
-def EditSolutions(request):
-	return object
+def EditSolutions(request,problemID):
+	comingProblemID= problemID.id; #request.POST["comingProblemID"]
+	comingDataStructures=request.POST.getlist("comingDataStructures")
+	comingProgrammingLanguage=request.POST["comingProgrammingLanguage"]
+	comingPlateforms=request.POST["comingPlateforms"]
+	comingTimeComplexity=request.POST["comingTimeComplexity"]
+	comingAuxiliarySpace=request.POST["comingAuxiliarySpace"]
+	comingCodeSubmissions=request.POST["comingCodeSubmissions"]
+
+	# object=Solutions()
+	object=Solutions.objects.get(pk=1) 
+
+	object.problem_id=problemID
+	object.codesubmissions=comingCodeSubmissions
+	object.save()
+
+	if(comingProgrammingLanguage):
+		object.programminglanguages=comingProgrammingLanguage
+		object.save()
+
+	if(comingPlateforms):
+		object.plateforms=comingPlateforms
+		object.save()
+
+	if(comingTimeComplexity):
+		object.timecomplexity=comingTimeComplexity
+		object.save()
+
+	if(comingAuxiliarySpace):
+		object.auxiliaryspace=comingAuxiliarySpace
+		object.save()
+
+	# must that you putted any one data-structure...
+	if(comingDataStructures):
+		object.datastructures=len(comingDataStructures)
+		holds = [ str(object.datastructure_id) for object in solutions_datastructures.objects.filter(solution_id=object.id) ]
+		for id in comingDataStructures:
+			if(id in holds):
+				holds.remove(id)
+			else:
+				miniobject=solutions_datastructures()
+				miniobject.solution_id=object
+				miniobject.datastructure_id=id
+				miniobject.save()
+		else:
+			for id in holds:
+				miniobject = solutions_datastructures.objects.get(datastructure_id=id, solution_id=object.id)
+				miniobject.delete()
+		object.save()
+
+	return None
+	# return object
 
 
 
@@ -110,10 +348,10 @@ def codesubmissions(request):
 					if(id in holds):
 						holds.remove(id)
 					else:
-						lock=solutions_datastructures()
-						lock.solution_id=object
-						lock.datastructure_id=id
-						lock.save()
+						miniobject=solutions_datastructures()
+						miniobject.solution_id=object
+						miniobject.datastructure_id=id
+						miniobject.save()
 				else:
 					for id in holds:
 						object = solutions_datastructures.objects.get(datastructure_id=id, solution_id=object.id)
@@ -155,10 +393,10 @@ def problemsubmissions(request):
 						if(id in holds):
 							holds.remove(id)
 						else:
-							lock=problems_plateforms()
-							lock.problem_id=problemID
-							lock.plateform_id=id
-							lock.save()
+							miniobject=problems_plateforms()
+							miniobject.problem_id=problemID
+							miniobject.plateform_id=id
+							miniobject.save()
 					else:
 						for id in holds:
 							object = problems_plateforms.objects.get(plateform_id=id, problem_id=problemID.id)
@@ -170,10 +408,10 @@ def problemsubmissions(request):
 						if(id in holds):
 							holds.remove(id)
 						else:
-							lock=problems_datastructures()
-							lock.problem_id=problemID
-							lock.datastructure_id=id
-							lock.save()
+							miniobject=problems_datastructures()
+							miniobject.problem_id=problemID
+							miniobject.datastructure_id=id
+							miniobject.save()
 					else:
 						for id in holds:
 							object = problems_datastructures.objects.get(datastructure_id=id, problem_id=problemID.id)
@@ -190,10 +428,10 @@ def problemsubmissions(request):
 				# object = Problems()
 				if(comingDetails):
 					object.detailsset+=1
-					lock=problems_detailssets()
-					lock.problem_id=problemID
-					lock.detailsset=comingDetails
-					lock.save()
+					miniobject=problems_detailssets()
+					miniobject.problem_id=problemID
+					miniobject.detailsset=comingDetails
+					miniobject.save()
 				if(comingTimeComplexity):
 					object.timecomplexity=comingTimeComplexity
 				if(comingAuxiliarySpace):
@@ -222,17 +460,17 @@ def edittables(request):
 		comingFrom=request.POST["comingFrom"]
 		comingData=request.POST["comingData"]
 		if(comingFrom=='Plateform'):
-			lock=Plateforms()
-			lock.name=comingData;
-			lock.save()
+			miniobject=Plateforms()
+			miniobject.name=comingData;
+			miniobject.save()
 		elif(comingFrom=='DataStructure'):
-			lock=DataStructures()
-			lock.name=comingData;
-			lock.save()
+			miniobject=DataStructures()
+			miniobject.name=comingData;
+			miniobject.save()
 		elif(comingFrom=='ProgrammingLanguage'):
-			lock=ProgrammingLanguages()
-			lock.name=comingData;
-			lock.save()
+			miniobject=ProgrammingLanguages()
+			miniobject.name=comingData;
+			miniobject.save()
 		else:
 			print("Go to somewhere else.....")
 		return redirect("/codecollections/edittables/")
