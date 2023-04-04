@@ -19,8 +19,8 @@
                                                     {% if DataStructures %}
                                                         {% for object in DataStructures %}
                                                             <div style="flex: none; padding: 5px 10px;">
-                                                                <input type="checkbox" id="comingDataStructures{{loop.counter}}" name="comingDataStructures" value="{{object.id}}"  {% if object in SolutionDataSet.datastructures %} checked {% endif %}>
-                                                                <label for="comingDataStructures{{loop.counter}}"> {{object.name}}</label>
+                                                                <input type="checkbox" id="SolutionsDataStructures" name="SolutionsDataStructures" value="{{object.id}}"  {% if object in SolutionDataSet.datastructures %} checked {% endif %}>
+                                                                <label for="SolutionsDataStructures"> {{object.name}}</label>
                                                             </div>
                                                         {% endfor %}
                                                     {% else %}
@@ -35,7 +35,7 @@
                                             <div class="row">
                                                 <div class="col-md-3 inputbox">
                                                     <label class="labels"> Programming Language </label>
-                                                    <select name="comingProgrammingLanguage" id="comingProgrammingLanguage" class="codeinputs">
+                                                    <select name="SolutionsProgrammingLanguage" id="SolutionsProgrammingLanguage" class="codeinputs">
                                                         {% for object in ProgrammingLanguages %}
                                                             <option value="{{object.id}}"{% if object.id == SolutionDataSet.programminglanguages.id %} selected {% endif %}>{{object.name}}</option>
                                                         {% endfor %}
@@ -44,7 +44,7 @@
                                                 </div>
                                                 <div class="col-md-3 inputbox">
                                                     <label class="labels"> Plateform </label>
-                                                    <select name="comingPlateforms" id="comingPlateforms" class="codeinputs">
+                                                    <select name="SolutionsPlateforms" id="SolutionsPlateforms" class="codeinputs">
                                                         {% for object in ProblemDataSet.plateforms %}
                                                                 <option value="{{object.id}}" {% if object.id == SolutionDataSet.plateforms.id %} selected {% endif %}>{{object.name}}</option>
                                                         {% endfor %}
@@ -53,15 +53,15 @@
                                                 </div>
                                                 <div class="col-md-3 inputbox">
                                                     <label class="labels"> Time Complexity </label>
-                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" value="{{SolutionDataSet.timecomplexity}}" name="comingTimeComplexity">
+                                                    <input class="codeinputs" type="text" id="SolutionsTimeComplexity" value="{{SolutionDataSet.timecomplexity}}" name="SolutionsTimeComplexity">
                                                 </div>
                                                 <div class="col-md-3 inputbox">
                                                     <label class="labels"> Auxiliary Complexity </label>
-                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" value="{{SolutionDataSet.auxiliaryspace}}" name="comingAuxiliarySpace">
+                                                    <input class="codeinputs" type="text" id="SolutionsAuxiliarySpace" value="{{SolutionDataSet.auxiliaryspace}}" name="SolutionsAuxiliarySpace">
                                                 </div>
                                             </div>
                                         </div>
-                                        <textarea name="comingCodeSubmissions" id="comingCodeSubmissions" class="codetextarea codeinputs" placeholder="typing..." style="margin:15px;margin-top:0;  max-width: -webkit-fill-available;"> {{SolutionDataSet.codesubmissions | default:None}} </textarea>
+                                        <textarea name="SolutionsCodeSubmissions" id="SolutionsCodeSubmissions" class="codetextarea codeinputs" placeholder="typing..." style="margin:15px;margin-top:0;  max-width: -webkit-fill-available;"> {{SolutionDataSet.codesubmissions | default:None}} </textarea>
                                         <div style="margin:15px; margin-top: 0;">
                                             <input class="codeinputs" type="submit" style="width:10%; background-color:darkred; color:white;"> 
                                         </div>

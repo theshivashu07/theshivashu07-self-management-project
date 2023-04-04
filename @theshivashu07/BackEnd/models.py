@@ -37,6 +37,19 @@ class ProgrammingLanguages(models.Model):
 		return "Added a new Programming Language : "+self.name+".";
 
 
+# ProblemsTitle
+# ProblemsPlateforms
+# ProblemsDataStructures
+# ProblemsTimeComplexity
+# ProblemsAuxiliarySpace
+# ProblemsDetailSet
+
+# SolutionsDataStructures
+# SolutionsProgrammingLanguage
+# SolutionsPlateforms
+# SolutionsTimeComplexity
+# SolutionsAuxiliarySpace
+# SolutionsCodeSubmissions
 
 
 class Problems(models.Model):

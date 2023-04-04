@@ -13,7 +13,7 @@
                                             <div class="col-md-12" style="padding: 20px; background-color: #303030; border-radius: 5px;">  
                                                 <div class="col-md-12 inputbox" style="padding:0; margin:0;">
                                                     <label class="labels" style=""> Enter Problem Title </label>
-                                                    <input class="codeinputs" type="text" id="comingProblemTitle" name="comingProblemTitle" placeholder="typing..." value="{{ ProblemDataSet.title }}" style="" required>
+                                                    <input class="codeinputs" type="text" id="ProblemsTitle" name="ProblemsTitle" placeholder="typing..." value="{{ ProblemDataSet.title }}" style="" required>
                                                 </div>
                                                 <div class="col-md-12 inputbox" style="padding:0; margin: 0; margin-top:10px;">
                                                     <label class="labels"> Select Plateforms </label>
@@ -21,8 +21,8 @@
                                                         {% if Plateforms %}
                                                             {% for object in Plateforms %}
                                                                 <div style="flex: none; padding: 5px 10px;">
-                                                                    <input type="checkbox" selected id="comingPlateforms{{loop.counter}}" name="comingPlateforms" value="{{object.id}}" {% if object in ProblemDataSet.plateforms %} checked {% endif %}>
-                                                                    <label for="comingPlateforms{{loop.counter}}"> {{object.name}}</label>
+                                                                    <input type="checkbox" selected id="ProblemsPlateforms" name="ProblemsPlateforms" value="{{object.id}}" {% if object in ProblemDataSet.plateforms %} checked {% endif %}>
+                                                                    <label for="ProblemsPlateforms"> {{object.name}}</label>
                                                                 </div>
                                                             {% endfor %}
                                                         {% else %}
@@ -38,8 +38,8 @@
                                                         {% if DataStructures %}
                                                             {% for object in DataStructures %}
                                                                 <div style="flex: none; padding: 5px 10px;">
-                                                                    <input type="checkbox" id="comingDataStructures{{loop.counter}}" name="comingDataStructures" value="{{object.id}}" {% if object in ProblemDataSet.datastructures %} checked {% endif %}>
-                                                                    <label for="comingDataStructures{{loop.counter}}"> {{object.name}}</label>
+                                                                    <input type="checkbox" id="ProblemsDataStructures" name="ProblemsDataStructures" value="{{object.id}}" {% if object in ProblemDataSet.datastructures %} checked {% endif %}>
+                                                                    <label for="ProblemsDataStructures"> {{object.name}}</label>
                                                                 </div>
                                                             {% endfor %}
                                                         {% else %}
@@ -54,16 +54,16 @@
 
                                                 <div class="col-md-12 inputbox" style="padding:0; margin:0; margin-top:10px;">
                                                     <label class="labels" style=""> Enter Details </label>
-                                                    <textarea name="comingDetails" id="comingDetails" class="codetextarea codeinputs" placeholder="typing..." style="height:250px; background-color:white;" required>{{ ProblemDataSet.detailsset |safe }}</textarea>
+                                                    <textarea name="ProblemsDetailSet" id="ProblemsDetailSet" class="codetextarea codeinputs" placeholder="typing..." style="height:250px; background-color:white;" required>{{ ProblemDataSet.detailsset |safe }}</textarea>
                                                 </div>
 
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-right:5px; margin-top:10px;">
                                                     <label class="labels" style=""> Expected Time Complexity </label>
-                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" placeholder="typing..." value="{{ ProblemDataSet.timecomplexity }}" style="">
+                                                    <input class="codeinputs" type="text" id="ProblemsTimeComplexity" name="ProblemsTimeComplexity" placeholder="typing..." value="{{ ProblemDataSet.timecomplexity }}" style="">
                                                 </div>
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-left:5px; margin-top:10px;">
                                                     <label class="labels" style=""> Expected Auxiliary Space </label>
-                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" placeholder="typing..." value="{{ ProblemDataSet.auxiliaryspace }}" style="">
+                                                    <input class="codeinputs" type="text" id="ProblemsAuxiliarySpace" name="ProblemsAuxiliarySpace" placeholder="typing..." value="{{ ProblemDataSet.auxiliaryspace }}" style="">
                                                 </div>
                                                 <div class="col-md-12 inputbox" style="padding:0; margin:0; padding:20px 0 10px 0">
                                                     <input class="codeinputs" type="submit" style="width:10%; background-color:darkred; color:white;"> 

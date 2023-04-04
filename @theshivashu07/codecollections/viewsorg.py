@@ -29,7 +29,7 @@ def index(request):
 
 def addproblems(request):
 	if request.method=="POST":
-		if( request.POST["comingProblemTitle"] and request.POST["comingDetails"] ):
+		if( request.POST["ProblemsTitle"] and request.POST["ProblemsDetailSet"] ):
 			_BulkFunctions.EditProblems(request,problemID)																			#wantchange___
 		else:
 			print("This is not correct Input's... Reput again!!!")
@@ -49,7 +49,7 @@ def addproblems(request):
 def addsolutions(request,problemslug='problem-number-0001'):
 	problemID=Problems.objects.get(slug='problem-number-0001')
 	if request.method=="POST":
-		if( request.POST["comingCodeSubmissions"] ):
+		if( request.POST["SolutionsCodeSubmissions"] ):
 			_BulkFunctions.EditSolutions(request,problemID)
 		else:
 			print("This is not correct Input's... Reput again!!!")
@@ -69,9 +69,9 @@ def addsolutions(request,problemslug='problem-number-0001'):
 
 def addproblemsandsolutions(request,problemslug='problem-number-0001'):
 	if request.method=="POST":
-		if( request.POST["comingProblemTitle"] and request.POST["comingDetails"] ):
+		if( request.POST["ProblemsTitle"] and request.POST["ProblemsDetailSet"] ):
 			_BulkFunctions.EditProblems(request,problemID)																			#wantchange___
-			if( request.POST["comingCodeSubmissions"] ):
+			if( request.POST["SolutionsCodeSubmissions"] ):
 				_BulkFunctions.EditSolutions(request,problemID)
 			else:
 				print("We're Discard only Solution... Reput again!!!")
@@ -93,7 +93,7 @@ def addproblemsandsolutions(request,problemslug='problem-number-0001'):
 
 def editproblems(request,problemslug='problem-number-0001'):
 	if request.method=="POST":
-		if( request.POST["comingProblemTitle"] and request.POST["comingDetails"] ):
+		if( request.POST["ProblemsTitle"] and request.POST["ProblemsDetailSet"] ):
 			_BulkFunctions.EditProblems(request,problemID)																			#wantchange___
 		else:
 			print("This is not correct Input's... Reput again!!!")
@@ -114,7 +114,7 @@ def editproblems(request,problemslug='problem-number-0001'):
 
 def editsolutions(request,problemslug='problem-number-0001',solutionid='1'):
 	if request.method=="POST":
-		if( request.POST["comingCodeSubmissions"] ):
+		if( request.POST["SolutionsCodeSubmissions"] ):
 			_BulkFunctions.EditSolutions(request,problemID)
 		else:
 			print("This is not correct Input's... Reput again!!!")

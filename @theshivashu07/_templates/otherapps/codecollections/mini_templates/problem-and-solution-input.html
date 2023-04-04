@@ -19,7 +19,7 @@
                                             <div class="col-md-12" style="padding: 20px; background-color: #303030; border-radius: 5px;">  
                                                 <div class="col-md-12 inputbox" style="padding:0; margin:0;">
                                                     <label class="labels" style=""> Enter Problem Title </label>
-                                                    <input class="codeinputs" type="text" id="comingProblemTitle" name="comingProblemTitle" placeholder="typing..."  style="" required>
+                                                    <input class="codeinputs" type="text" id="ProblemsTitle" name="ProblemsTitle" placeholder="typing..."  style="" required>
                                                 </div>
                                                 <div class="col-md-12 inputbox" style="padding:0; margin: 0; margin-top:10px;">
                                                     <label class="labels"> Select Plateforms </label>
@@ -27,8 +27,8 @@
                                                         {% if Plateforms %}
                                                             {% for object in Plateforms %}
                                                                 <div style="flex: none; padding: 5px 10px;">
-                                                                    <input type="checkbox" selected id="comingPlateforms" name="comingPlateforms" value="{{object.id}}" {% if object in ProblemDataSet.plateforms %} checked {% endif %}>
-                                                                    <label for="comingPlateforms"> {{object.name}}</label>
+                                                                    <input type="checkbox" selected id="ProblemsPlateforms" name="ProblemsPlateforms" value="{{object.id}}" {% if object in ProblemDataSet.plateforms %} checked {% endif %}>
+                                                                    <label for="ProblemsPlateforms"> {{object.name}}</label>
                                                                 </div>
                                                             {% endfor %}
                                                         {% else %}
@@ -44,8 +44,8 @@
                                                         {% if DataStructures %}
                                                             {% for object in DataStructures %}
                                                                 <div style="flex: none; padding: 5px 10px;">
-                                                                    <input type="checkbox" id="comingDataStructures" name="comingDataStructures" value="{{object.id}}" {% if object in ProblemDataSet.datastructures %} checked {% endif %}>
-                                                                    <label for="comingDataStructures"> {{object.name}}</label>
+                                                                    <input type="checkbox" id="ProblemsDataStructures" name="ProblemsDataStructures" value="{{object.id}}" {% if object in ProblemDataSet.datastructures %} checked {% endif %}>
+                                                                    <label for="ProblemsDataStructures"> {{object.name}}</label>
                                                                 </div>
                                                             {% endfor %}
                                                         {% else %}
@@ -59,15 +59,15 @@
 
                                                 <div class="col-md-12 inputbox" style="padding:0; margin:0; margin-top:10px;">
                                                     <label class="labels" style=""> Enter Details </label>
-                                                    <textarea name="comingDetails" id="comingDetails" class="codetextarea codeinputs" placeholder="typing..." style="height:250px; background-color:white;" required></textarea>
+                                                    <textarea name="ProblemsDetailSet" id="ProblemsDetailSet" class="codetextarea codeinputs" placeholder="typing..." style="height:250px; background-color:white;" required></textarea>
                                                 </div>
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-right:5px; margin-top:10px;">
                                                     <label class="labels" style=""> Expected Time Complexity </label>
-                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity" placeholder="typing..." style="">
+                                                    <input class="codeinputs" type="text" id="ProblemsTimeComplexity" name="ProblemsTimeComplexity" placeholder="typing..." style="">
                                                 </div>
                                                 <div class="col-md-6 inputbox" style="padding:0; margin:0; padding-left:5px; margin-top:10px;">
                                                     <label class="labels" style=""> Expected Auxiliary Space </label>
-                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace" placeholder="typing..." style="">
+                                                    <input class="codeinputs" type="text" id="ProblemsAuxiliarySpace" name="ProblemsAuxiliarySpace" placeholder="typing..." style="">
                                                 </div>
                                                 <!-- <div class="col-md-12 inputbox" style="padding:0; margin:0; padding:20px 0 10px 0">
                                                     <input class="codeinputs" type="submit" style="width:10%; background-color:darkred; color:white;"> 
@@ -103,8 +103,8 @@
                                                     {% if DataStructures %}
                                                         {% for object in DataStructures %}
                                                             <div style="flex: none; padding: 5px 10px;">
-                                                                <input type="checkbox" id="comingDataStructures" name="comingDataStructures" value="{{object.id}}" >
-                                                                <label for="comingDataStructures"> {{object.name}}</label>
+                                                                <input type="checkbox" id="SolutionsDataStructures" name="SolutionsDataStructures" value="{{object.id}}" >
+                                                                <label for="SolutionsDataStructures"> {{object.name}}</label>
                                                             </div>
                                                         {% endfor %}
                                                     {% else %}
@@ -119,7 +119,7 @@
                                             <div class="row">
                                                 <div class="col-md-3 inputbox">
                                                     <label class="labels"> Programming Language </label>
-                                                    <select name="comingProgrammingLanguage" id="comingProgrammingLanguage" class="codeinputs">
+                                                    <select name="SolutionsProgrammingLanguage" id="SolutionsProgrammingLanguage" class="codeinputs">
                                                         {% for object in ProgrammingLanguages %}
                                                             <option value="{{object.id}}"{% if object.name == 'Python' %} selected {% endif %}>{{object.name}}</option>
                                                         {% endfor %}
@@ -128,7 +128,7 @@
                                                 </div>
                                                 <div class="col-md-3 inputbox">
                                                     <label class="labels"> Plateform </label>
-                                                    <select name="comingPlateforms" id="comingPlateforms" class="codeinputs">
+                                                    <select name="SolutionsPlateforms" id="SolutionsPlateforms" class="codeinputs">
                                                         {% for object in Plateforms %}
                                                                 <option value="{{object.id}}" {% if object.name == 'GeeksForGeeks' %} selected {% endif %}>{{object.name}}</option>
                                                         {% endfor %}
@@ -137,15 +137,15 @@
                                                 </div>
                                                 <div class="col-md-3 inputbox">
                                                     <label class="labels"> Time Complexity </label>
-                                                    <input class="codeinputs" type="text" id="comingTimeComplexity" name="comingTimeComplexity">
+                                                    <input class="codeinputs" type="text" id="SolutionsTimeComplexity" name="SolutionsTimeComplexity">
                                                 </div>
                                                 <div class="col-md-3 inputbox">
                                                     <label class="labels"> Auxiliary Complexity </label>
-                                                    <input class="codeinputs" type="text" id="comingAuxiliarySpace" name="comingAuxiliarySpace">
+                                                    <input class="codeinputs" type="text" id="SolutionsAuxiliarySpace" name="SolutionsAuxiliarySpace">
                                                 </div>
                                             </div>
                                         </div>
-                                        <textarea name="comingCodeSubmissions" id="comingCodeSubmissions" class="codetextarea codeinputs" placeholder="typing..." style="margin:15px;margin-top:0;  max-width: -webkit-fill-available;"></textarea>
+                                        <textarea name="SolutionsCodeSubmissions" id="SolutionsCodeSubmissions" class="codetextarea codeinputs" placeholder="typing..." style="margin:15px;margin-top:0;  max-width: -webkit-fill-available;"></textarea>
                                         <div style="margin:15px; margin-top: 0;">
                                             <input class="codeinputs" type="submit" style="width:10%; background-color:darkred; color:white;"> 
                                         </div>
