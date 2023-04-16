@@ -30,6 +30,7 @@ def SolutionDataSet(problemID,solutionID):
 
 
 def AddProblems(request):
+	# when you want to ADD Problems...
 	ProblemsTitle=request.POST["ProblemsTitle"]
 	ProblemsPlateforms=request.POST.getlist("ProblemsPlateforms")
 	ProblemsDataStructures=request.POST.getlist("ProblemsDataStructures")
@@ -96,6 +97,7 @@ def AddProblems(request):
 
 
 def EditProblems(request,problemID):
+	# when you want to EDIT Problems...
 	ProblemsTitle=request.POST["ProblemsTitle"]
 	ProblemsPlateforms=request.POST.getlist("ProblemsPlateforms")
 	ProblemsDataStructures=request.POST.getlist("ProblemsDataStructures")
@@ -161,6 +163,7 @@ def EditProblems(request,problemID):
 
 
 def AddSolutions(request,problemID):
+	# when you want to ADD Solution...
 	SolutionsDataStructures=request.POST.getlist("SolutionsDataStructures")
 	SolutionsProgrammingLanguage=request.POST["SolutionsProgrammingLanguage"]
 	SolutionsPlateforms=request.POST["SolutionsPlateforms"]
@@ -214,6 +217,7 @@ def AddSolutions(request,problemID):
 
 
 def EditSolutions(request,problemID):
+	# when you want to EDIT Solution...
 	SolutionsDataStructures=request.POST.getlist("SolutionsDataStructures")
 	SolutionsProgrammingLanguage=request.POST["SolutionsProgrammingLanguage"]
 	SolutionsPlateforms=request.POST["SolutionsPlateforms"]
