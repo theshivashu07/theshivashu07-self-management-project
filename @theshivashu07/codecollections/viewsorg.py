@@ -8,10 +8,10 @@ from BackEnd.models import *
 
 
 # import codecollections._importantdatasets as _importantdatasets
-problemID=Problems.objects.get(pk=1)
-solutionID=Solutions.objects.get(pk=1)
+problemID=Problems.objects.get(pk=2)
+# solutionID=Solutions.objects.get(pk=1)
 
-
+defaultSlug='problem-number-0001'
 
 
 
@@ -30,7 +30,8 @@ def index(request):
 def addproblems(request):
 	if request.method=="POST":
 		if( request.POST["ProblemsTitle"] and request.POST["ProblemsDetailSet"] ):
-			_BulkFunctions.EditProblems(request,problemID)																			#wantchange___
+			_BulkFunctions.AddProblems(request)																			#wantchange___
+			# _BulkFunctions.EditProblems(request,problemID)														#wantchange___
 		else:
 			print("This is not correct Input's... Reput again!!!")
 		return redirect("/codecollections/problems/new/")
@@ -46,11 +47,14 @@ def addproblems(request):
 
 
 
-def addsolutions(request,problemslug='problem-number-0001'):
-	problemID=Problems.objects.get(slug='problem-number-0001')
+# def addsolutions(request,problemslug=defaultSlug):
+	# problemID=Problems.objects.get(slug=defaultSlug)
+def addsolutions(request,problemslug=defaultSlug):
+	problemID=Problems.objects.get(slug=defaultSlug)
 	if request.method=="POST":
 		if( request.POST["SolutionsCodeSubmissions"] ):
-			_BulkFunctions.EditSolutions(request,problemID)
+			_BulkFunctions.AddSolutions(request,problemID)
+			# _BulkFunctions.EditSolutions(request,problemID)
 		else:
 			print("This is not correct Input's... Reput again!!!")
 		return redirect("/codecollections/problemsandsolutions/problem-number-001/new/")
@@ -67,7 +71,7 @@ def addsolutions(request,problemslug='problem-number-0001'):
 
 
 
-def addproblemsandsolutions(request,problemslug='problem-number-0001'):
+def addproblemsandsolutions(request,problemslug=defaultSlug):
 	if request.method=="POST":
 		if( request.POST["ProblemsTitle"] and request.POST["ProblemsDetailSet"] ):
 			_BulkFunctions.EditProblems(request,problemID)																			#wantchange___
@@ -91,7 +95,7 @@ def addproblemsandsolutions(request,problemslug='problem-number-0001'):
 
 
 
-def editproblems(request,problemslug='problem-number-0001'):
+def editproblems(request,problemslug=defaultSlug):
 	if request.method=="POST":
 		if( request.POST["ProblemsTitle"] and request.POST["ProblemsDetailSet"] ):
 			_BulkFunctions.EditProblems(request,problemID)																			#wantchange___
@@ -112,7 +116,7 @@ def editproblems(request,problemslug='problem-number-0001'):
 
 
 
-def editsolutions(request,problemslug='problem-number-0001',solutionid='1'):
+def editsolutions(request,problemslug=defaultSlug,solutionid='1'):
 	if request.method=="POST":
 		if( request.POST["SolutionsCodeSubmissions"] ):
 			_BulkFunctions.EditSolutions(request,problemID)
@@ -151,7 +155,7 @@ def problemswholelist(request):
 
 
 
-def openproblemsandsolutions(request,problemslug='problem-number-0001',solutionid='1'):
+def openproblemsandsolutions(request,problemslug=defaultSlug,solutionid='1'):
 	if request.method=="POST":
 		pass
 
