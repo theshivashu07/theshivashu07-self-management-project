@@ -9,9 +9,10 @@ from BackEnd.models import *
 
 # import codecollections._importantdatasets as _importantdatasets
 problemID=Problems.objects.get(pk=2)
-# solutionID=Solutions.objects.get(pk=1)
+solutionID=Solutions.objects.get(pk=1)
 
 defaultSlug='problem-number-0001'
+
 
 
 
