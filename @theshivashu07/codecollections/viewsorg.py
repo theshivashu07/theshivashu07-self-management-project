@@ -12,7 +12,7 @@ from BackEnd.models import *
 # solutionID=Solutions.objects.get(pk=1)
 
 # default slug set!!!         
-defaultSlug='problem-number-0001' 
+defaultSlug='problem-number-0002' 
 
 
 
@@ -22,6 +22,7 @@ def index(request):
 	if request.method=="POST":
 		pass
 	SenderDatasets={
+		'ProblemsSlug':defaultSlug,
 		'DataSet':None,
 	}
 	return render(request,"otherapps/codecollections/index.html",SenderDatasets);
@@ -39,6 +40,7 @@ def addproblems(request):
 		return redirect("/codecollections/problems/new/")
 
 	SenderDatasets={
+		'ProblemsSlug':defaultSlug,
 		# 'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
 		# 'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
 		'Plateforms':Plateforms.objects.all(),
@@ -62,6 +64,7 @@ def addsolutions(request,problemslug):
 		return redirect("/codecollections/problemsandsolutions/"+defaultSlug+"/new/")
 
 	SenderDatasets={
+		'ProblemsSlug':defaultSlug,
 		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
 		# 'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
 		'Plateforms':Plateforms.objects.all(),
@@ -85,6 +88,7 @@ def addproblemsandsolutions(request,problemslug):
 			print("We're Discard both Problem and Solution... Reput again!!!")
 
 	SenderDatasets={
+		'ProblemsSlug':defaultSlug,
 		# 'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
 		# 'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
 		'Plateforms':Plateforms.objects.all(),
@@ -106,6 +110,7 @@ def editproblems(request,problemslug):
 		return redirect("/codecollections/problems/new/")
 
 	SenderDatasets={
+		'ProblemsSlug':defaultSlug,
 		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
 		# 'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
 		'Plateforms':Plateforms.objects.all(),
@@ -127,6 +132,7 @@ def editsolutions(request,problemslug,solutionid='1'):
 		return redirect("/codecollections/problemsandsolutions/"+defaultSlug+"/new/")
 
 	SenderDatasets={
+		'ProblemsSlug':defaultSlug,
 		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
 		'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
 		'Plateforms':Plateforms.objects.all(),
@@ -144,6 +150,7 @@ def problemswholelist(request):
 		pass
 
 	SenderDatasets={
+		'ProblemsSlug':defaultSlug,
 		# 'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
 		# 'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
 		'Plateforms':Plateforms.objects.all(),
@@ -162,6 +169,7 @@ def openproblemsandsolutions(request,problemslug,solutionid='1'):
 		pass
 
 	SenderDatasets={
+		'ProblemsSlug':defaultSlug,
 		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
 		'SolutionDataSet':_BulkFunctions.SolutionDataSet(problemID,solutionID),
 		'Plateforms':Plateforms.objects.all(),

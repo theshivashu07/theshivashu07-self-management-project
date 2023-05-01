@@ -19,22 +19,22 @@
                             <li {% if request.path == '/codecollections/problems/new/' %} class="active" {% endif %}><a href="/codecollections/problems/new/"> Add Problem </a></li>
 
                             <!-- When we create new solution for any problem -->
-                            <li {% if request.path == '/codecollections/problemsandsolutions/problem-number-001/new/' %} class="active" {% endif %}><a href="/codecollections/problemsandsolutions/problem-number-001/new/"> Add Solution </a></li>
+                            <li {% if request.path == '/codecollections/problemsandsolutions/{{ProblemsSlug}}/new/' %} class="active" {% endif %}><a href="/codecollections/problemsandsolutions/{{ProblemsSlug}}/new/"> Add Solution </a></li>
 
                             <!-- When we create problem and solution directly -->
                             <li {% if request.path == '/codecollections/problemsandsolutions/new/' %} class="active" {% endif %}><a href="/codecollections/problemsandsolutions/new/"> Add Both Directly </a></li>
 
                             <!-- When we create a new problem, only problem -->
-                            <li {% if request.path == '/codecollections/problems/edit/problem-number-001/' %} class="active" {% endif %}><a href="/codecollections/problems/edit/problem-number-001/"> Edit Problem </a></li>
+                            <li {% if request.path == '/codecollections/problems/edit/{{ProblemsSlug}}/' %} class="active" {% endif %}><a href="/codecollections/problems/edit/{{ProblemsSlug}}/"> Edit Problem </a></li>
 
                             <!-- When we create new solution for any problem -->
-                            <li {% if request.path == '/codecollections/problemsandsolutions/problem-number-001/edit/1/' %} class="active" {% endif %}><a href="/codecollections/problemsandsolutions/problem-number-001/edit/1/"> Edit Solution </a></li>
+                            <li {% if request.path == '/codecollections/problemsandsolutions/{{ProblemsSlug}}/edit/1/' %} class="active" {% endif %}><a href="/codecollections/problemsandsolutions/{{ProblemsSlug}}/edit/1/"> Edit Solution </a></li>
 
                             <!-- When we create a new problem, only problem -->
                             <li {% if request.path == '/codecollections/problems/wholelist/' %} class="active" {% endif %}><a href="/codecollections/problems/wholelist/"> Problems Listing </a></li>
 
                             <!-- When we create new solution for any problem -->
-                            <li {% if request.path == '/codecollections/problemsandsolutions/problem-number-001/1/' %} class="active" {% endif %}><a href="/codecollections/problemsandsolutions/problem-number-001/1/"> Open Problem with Solution </a></li>
+                            <li {% if request.path == '/codecollections/problemsandsolutions/{{ProblemsSlug}}/1/' %} class="active" {% endif %}><a href="/codecollections/problemsandsolutions/{{ProblemsSlug}}/1/"> Open Problem with Solution </a></li>
 
                         </ul>
                         </ul>
