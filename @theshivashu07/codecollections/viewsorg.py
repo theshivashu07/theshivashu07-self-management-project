@@ -31,6 +31,7 @@ def index(request):
 
 
 def addproblems(request):
+	# problemID=Problems.objects.get(slug=defaultSlug)
 	if request.method=="POST":
 		if( request.POST["ProblemsTitle"] and request.POST["ProblemsDetailSet"] ):
 			_BulkFunctions.AddProblems(request)																			#wantchange___
@@ -51,8 +52,6 @@ def addproblems(request):
 
 
 
-# def addsolutions(request,problemslug):
-	# problemID=Problems.objects.get(slug=defaultSlug)
 def addsolutions(request,problemslug):
 	problemID=Problems.objects.get(slug=defaultSlug)
 	if request.method=="POST":
@@ -76,7 +75,8 @@ def addsolutions(request,problemslug):
 
 
 
-def addproblemsandsolutions(request,problemslug):
+def addproblemsandsolutions(request):
+	problemID=Problems.objects.get(slug=defaultSlug)
 	if request.method=="POST":
 		if( request.POST["ProblemsTitle"] and request.POST["ProblemsDetailSet"] ):
 			_BulkFunctions.EditProblems(request,problemID)																			#wantchange___
@@ -102,6 +102,7 @@ def addproblemsandsolutions(request,problemslug):
 
 
 def editproblems(request,problemslug):
+	problemID=Problems.objects.get(slug=defaultSlug)
 	if request.method=="POST":
 		if( request.POST["ProblemsTitle"] and request.POST["ProblemsDetailSet"] ):
 			_BulkFunctions.EditProblems(request,problemID)																			#wantchange___
@@ -124,6 +125,8 @@ def editproblems(request,problemslug):
 
 
 def editsolutions(request,problemslug,solutionid='1'):
+	problemID=Problems.objects.get(slug=defaultSlug)
+	solutionID=Solutions.objects.get(slug=defaultSlug)
 	if request.method=="POST":
 		if( request.POST["SolutionsCodeSubmissions"] ):
 			_BulkFunctions.EditSolutions(request,problemID)
@@ -144,7 +147,7 @@ def editsolutions(request,problemslug,solutionid='1'):
 
 
 
-
+ 
 def problemswholelist(request):
 	if request.method=="POST":
 		pass
@@ -165,9 +168,9 @@ def problemswholelist(request):
 
 
 def openproblemsandsolutions(request,problemslug,solutionid='1'):
+	problemID=Problems.objects.get(slug=defaultSlug)
 	if request.method=="POST":
 		pass
-
 	SenderDatasets={
 		'ProblemsSlug':defaultSlug,
 		'ProblemDataSet':_BulkFunctions.ProblemDataSet(problemID),
