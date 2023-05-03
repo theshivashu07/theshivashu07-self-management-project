@@ -13,11 +13,11 @@ urlpatterns=[
 		path('problemsandsolutions/new/',views.addproblemsandsolutions,name='addproblemsandsolutions'),
 
 		path('problems/edit/<slug:problemslug>/',views.editproblems,name='editproblems'),
-		path('problemsandsolutions/<slug:problemslug>/edit/1/',views.editsolutions,name='editsolutions'),
+		path('problemsandsolutions/<slug:problemslug>/edit/<str:solutionid>/',views.editsolutions,name='editsolutions'),
 
 		path('problems/wholelist/',views.problemswholelist,name='problemswholelist'),
 		# path('problems/<slug:problemslug>/',views.openproblems,name='openproblems'),
-		path('problemsandsolutions/<slug:problemslug>/1/',views.openproblemsandsolutions,name='openproblemsandsolutions'),
+		path('problemsandsolutions/<slug:problemslug>/<str:solutionid>/',views.openproblemsandsolutions,name='openproblemsandsolutions'),
 
 		# path('justtry/',views.justtry,name='justtry'),
 		# path('/codecollections/',views.problemsubmissions,name='problemsubmissions'),
