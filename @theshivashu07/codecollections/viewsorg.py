@@ -11,7 +11,7 @@ from BackEnd.models import *
 # problemID=Problems.objects.get(pk=2)
 # solutionID=Solutions.objects.get(pk=1)
 
-# default slug set!!!         
+# default slug set!!!          
 defaultSlug='problem-number-0002' 
 
 
@@ -168,7 +168,8 @@ def problemswholelist(request):
 
 
 def openproblemsandsolutions(request,problemslug,solutionid='1'):
-	problemID=Problems.objects.get(slug=defaultSlug)
+	problemID=Problems.objects.get(slug=problemslug)
+	solutionID=Solutions.objects.get(slug=problemslug)
 	if request.method=="POST":
 		pass
 	SenderDatasets={
