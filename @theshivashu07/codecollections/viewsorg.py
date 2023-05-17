@@ -7,11 +7,11 @@ from BackEnd.models import *
 # Create your views here.
 
 
-# import codecollections._importantdatasets as _importantdatasets
-# problemID=Problems.objects.get(pk=2)
-# solutionID=Solutions.objects.get(pk=1)
+# import codecollections._importantdatasets as _importantdatasets 
+# problemID=Problems.objects.get(pk=2) 
+# solutionID=Solutions.objects.get(pk=1) 
 
-# default slug set!!!                                  
+# default slug set!!!                                    
 defaultSlug='problem-number-0002' 
 
 
