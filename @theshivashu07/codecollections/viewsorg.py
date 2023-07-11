@@ -11,7 +11,7 @@ from BackEnd.models import *
 # problemID=Problems.objects.get(pk=2) 
 # solutionID=Solutions.objects.get(pk=1) 
 
-# default slug set!!!                                                                                                                                                                       
+# default slug set!!!                                                                                                                                                                         
 defaultSlug='problem-number-0002' 
 
 
